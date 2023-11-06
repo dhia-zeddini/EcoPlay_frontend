@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.LoginActivity"
+    android:background="@drawable/eco_play_background">
+
+    <!-- You would add the Google and Facebook buttons here.
+         For this, you would typically use an ImageView or a custom button
+         with the respective logos, and handle their click events in code. -->
+
+    <TextView
+        android:id="@+id/tvLoginHeader2"
+        android:layout_width="132dp"
+        android:layout_height="83dp"
+        android:text="Play"
+        android:textColor="@color/design_default_color_on_secondary"
+        android:textColorHint="@color/Primary"
+        android:textSize="60sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="198dp"
+        tools:layout_editor_absoluteY="26dp" />
+
+    <TextView
+        android:id="@+id/tvLoginHeader"
+        android:layout_width="120dp"
+        android:layout_height="83dp"
+        android:text="Eco"
+        android:textAlignment="textEnd"
+        android:textColor="@color/Primary"
+        android:textColorHint="@color/Primary"
+        android:textSize="60sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="77dp"
+        tools:layout_editor_absoluteY="26dp" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="106dp"
+        android:layout_height="113dp"
+        tools:layout_editor_absoluteX="152dp"
+        tools:layout_editor_absoluteY="137dp"
+        tools:srcCompat="@drawable/clipart" />
+
+    <TextView
+        android:id="@+id/tvSignUpPrompt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Don’t have an account? Sign Up!"
+        android:textSize="14sp"
+        tools:layout_editor_absoluteX="106dp"
+        tools:layout_editor_absoluteY="661dp" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="175dp"
+        android:layout_height="42dp"
+        android:backgroundTint="@color/Primary"
+        android:text="Login"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="118dp"
+        tools:layout_editor_absoluteY="490dp" />
+
+    <EditText
+        android:id="@+id/etEmail"
+        android:layout_width="324dp"
+        android:layout_height="40dp"
+        android:background="@drawable/input_shape"
+        android:drawableLeft="@drawable/email_icon"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:paddingStart="10dp"
+        tools:layout_editor_absoluteX="41dp"
+        tools:layout_editor_absoluteY="312dp" />
+
+    <EditText
+        android:id="@+id/etEmail2"
+        android:layout_width="324dp"
+        android:layout_height="40dp"
+        android:background="@drawable/input_shape"
+        android:drawableLeft="@drawable/lock_icon"
+        android:hint="Password"
+        android:inputType="textEmailAddress"
+        android:paddingStart="10dp"
+        tools:layout_editor_absoluteX="41dp"
+        tools:layout_editor_absoluteY="371dp" />
+
+    <TextView
+        android:id="@+id/tvForgotPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Forgot Password ?"
+        android:textSize="14sp"
+        tools:layout_editor_absoluteX="268dp"
+        tools:layout_editor_absoluteY="430dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
