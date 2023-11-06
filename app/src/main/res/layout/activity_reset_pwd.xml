@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/eco_play_background"
+    tools:context=".view.ResetPwdActivity">
+
+    <!-- You would add the Google and Facebook buttons here.
+         For this, you would typically use an ImageView or a custom button
+         with the respective logos, and handle their click events in code. -->
+
+    <TextView
+        android:id="@+id/tvLoginHeader2"
+        android:layout_width="126dp"
+        android:layout_height="74dp"
+        android:layout_marginTop="26dp"
+        android:layout_marginEnd="81dp"
+        android:text="Play"
+        android:textColor="@color/design_default_color_on_secondary"
+        android:textColorHint="@color/Primary"
+        android:textSize="60sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvLoginHeader"
+        android:layout_width="126dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="77dp"
+        android:layout_marginTop="26dp"
+        android:layout_marginEnd="1dp"
+        android:text="Eco"
+        android:textAlignment="textEnd"
+        android:textColor="@color/Primary"
+        android:textColorHint="@color/Primary"
+        android:textSize="60sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/tvLoginHeader2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="175dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="118dp"
+        android:layout_marginTop="46dp"
+        android:layout_marginEnd="118dp"
+        android:backgroundTint="@color/Primary"
+        android:text="Confirm"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etEmail11" />
+
+    <EditText
+        android:id="@+id/etEmail"
+        android:layout_width="327dp"
+        android:layout_height="62dp"
+        android:layout_marginStart="41dp"
+        android:layout_marginTop="23dp"
+        android:layout_marginEnd="43dp"
+        android:background="@drawable/input_shape"
+        android:drawableLeft="@drawable/lock_icon"
+        android:hint="Password"
+        android:inputType="textEmailAddress"
+        android:paddingStart="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <EditText
+        android:id="@+id/etEmail11"
+        android:layout_width="329dp"
+        android:layout_height="62dp"
+        android:layout_marginStart="41dp"
+        android:layout_marginTop="23dp"
+        android:layout_marginEnd="41dp"
+        android:background="@drawable/input_shape"
+        android:drawableLeft="@drawable/lock_icon"
+        android:hint="Confirm Password"
+        android:inputType="textEmailAddress"
+        android:paddingStart="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etEmail" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="300dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="19dp"
+        android:layout_marginEnd="56dp"
+        android:text="Reset Password"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="163dp"
+        android:layout_height="174dp"
+        android:layout_marginStart="130dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="118dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvLoginHeader2"
+        app:srcCompat="@drawable/reset_pwd_img" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
