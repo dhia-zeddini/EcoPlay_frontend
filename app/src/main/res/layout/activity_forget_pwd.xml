@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/eco_play_background"
+    tools:context=".view.ForgetPwdActivity">
+
+    <!-- You would add the Google and Facebook buttons here.
+         For this, you would typically use an ImageView or a custom button
+         with the respective logos, and handle their click events in code. -->
+
+    <TextView
+        android:id="@+id/tvLoginHeader2"
+        android:layout_width="126dp"
+        android:layout_height="83dp"
+        android:text="Play"
+        android:textColor="@color/design_default_color_on_secondary"
+        android:textColorHint="@color/Primary"
+        android:textSize="60sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="204dp"
+        tools:layout_editor_absoluteY="26dp" />
+
+    <TextView
+        android:id="@+id/tvLoginHeader"
+        android:layout_width="126dp"
+        android:layout_height="64dp"
+        android:text="Eco"
+        android:textAlignment="textEnd"
+        android:textColor="@color/Primary"
+        android:textColorHint="@color/Primary"
+        android:textSize="60sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="77dp"
+        tools:layout_editor_absoluteY="26dp" />
+
+    <TextView
+        android:id="@+id/tvSignUpPrompt"
+        android:layout_width="51dp"
+        android:layout_height="24dp"
+        android:text="Back"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="180dp"
+        tools:layout_editor_absoluteY="564dp" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="175dp"
+        android:layout_height="64dp"
+        android:backgroundTint="@color/Primary"
+        android:text="Login"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="118dp"
+        tools:layout_editor_absoluteY="468dp" />
+
+    <EditText
+        android:id="@+id/etEmail"
+        android:layout_width="329dp"
+        android:layout_height="63dp"
+        android:background="@drawable/input_shape"
+        android:drawableLeft="@drawable/email_icon"
+        android:hint="Your Email"
+        android:inputType="textEmailAddress"
+        android:paddingStart="10dp"
+        tools:layout_editor_absoluteX="41dp"
+        tools:layout_editor_absoluteY="354dp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="309dp"
+        android:layout_height="99dp"
+        android:text="EcoPlay will send you an email with verification code"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="43dp"
+        tools:layout_editor_absoluteY="210dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
