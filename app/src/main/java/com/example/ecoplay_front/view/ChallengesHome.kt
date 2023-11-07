@@ -15,7 +15,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class MainActivity : AppCompatActivity() {
+class ChallengesHome : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var challengeAdapter: ChallengeAdapter
 
