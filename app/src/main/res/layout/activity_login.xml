@@ -68,10 +68,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnLogin"
         android:layout_width="175dp"
         android:layout_height="0dp"
         android:layout_marginBottom="129dp"
@@ -82,7 +82,7 @@
         app:layout_constraintBottom_toTopOf="@+id/tvSignUpPrompt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etEmail2" />
+        app:layout_constraintTop_toBottomOf="@+id/etPwd" />
 
     <EditText
         android:id="@+id/etEmail"
@@ -94,13 +94,13 @@
         android:hint="Email"
         android:inputType="textEmailAddress"
         android:paddingStart="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/etEmail2"
-        app:layout_constraintEnd_toEndOf="@+id/etEmail2"
-        app:layout_constraintStart_toStartOf="@+id/etEmail2"
+        app:layout_constraintBottom_toTopOf="@+id/etPwd"
+        app:layout_constraintEnd_toEndOf="@+id/etPwd"
+        app:layout_constraintStart_toStartOf="@+id/etPwd"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <EditText
-        android:id="@+id/etEmail2"
+        android:id="@+id/etPwd"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="41dp"
@@ -111,7 +111,7 @@
         android:hint="Password"
         android:inputType="textEmailAddress"
         android:paddingStart="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/btnLogin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etEmail" />
