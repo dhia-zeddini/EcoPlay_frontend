@@ -109,7 +109,7 @@
         android:background="@drawable/input_shape"
         android:drawableLeft="@drawable/lock_icon"
         android:hint="Password"
-        android:inputType="textEmailAddress"
+        android:inputType="text|textPassword"
         android:paddingStart="10dp"
         app:layout_constraintBottom_toTopOf="@+id/btnLogin"
         app:layout_constraintEnd_toEndOf="parent"
