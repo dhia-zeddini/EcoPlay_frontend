@@ -1,9 +1,9 @@
 package com.example.ecoplay_front.model
 
-data class UserModel(
+data class LoginRequestModel(
 
 
-    var phoneNumber: String,
+    var data: String,
 
     var password: String,
 

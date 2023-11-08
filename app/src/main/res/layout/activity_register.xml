@@ -30,6 +30,7 @@
         android:layout_height="64dp"
         android:layout_marginStart="77dp"
         android:layout_marginTop="26dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="64dp"
         android:text="Eco"
         android:textAlignment="textEnd"
@@ -38,11 +39,12 @@
         android:textSize="60sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/imageButton"
+        app:layout_constraintEnd_toStartOf="@+id/tvLoginHeader2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tvSignUpPrompt"
+        android:id="@+id/tvBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="97dp"
@@ -52,7 +54,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/tvSignUpPrompt2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
+        app:layout_constraintTop_toBottomOf="@+id/btnSend" />
 
     <TextView
         android:id="@+id/tvSignUpPrompt2"
@@ -64,10 +66,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
+        app:layout_constraintTop_toBottomOf="@+id/btnSend" />
 
     <Button
-        android:id="@+id/btnLogin"
+        android:id="@+id/btnSend"
         android:layout_width="175dp"
         android:layout_height="64dp"
         android:layout_marginStart="118dp"
@@ -77,13 +79,13 @@
         android:text="Register"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/tvSignUpPrompt"
+        app:layout_constraintBottom_toTopOf="@+id/tvBack"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etEmail5" />
+        app:layout_constraintTop_toBottomOf="@+id/etConfirmPwd" />
 
     <EditText
-        android:id="@+id/etEmail5"
+        android:id="@+id/etConfirmPwd"
         android:layout_width="327dp"
         android:layout_height="47dp"
         android:layout_marginTop="12dp"
@@ -92,12 +94,12 @@
         android:hint="Confirm Password"
         android:inputType="textEmailAddress"
         android:paddingStart="10dp"
-        app:layout_constraintEnd_toEndOf="@+id/etEmail4"
-        app:layout_constraintStart_toStartOf="@+id/etEmail4"
-        app:layout_constraintTop_toBottomOf="@+id/etEmail4" />
+        app:layout_constraintEnd_toEndOf="@+id/etPassword"
+        app:layout_constraintStart_toStartOf="@+id/etPassword"
+        app:layout_constraintTop_toBottomOf="@+id/etPassword" />
 
     <EditText
-        android:id="@+id/etEmail6"
+        android:id="@+id/etPhoneNumber"
         android:layout_width="329dp"
         android:layout_height="47dp"
         android:layout_marginTop="11dp"
@@ -111,7 +113,7 @@
         app:layout_constraintTop_toBottomOf="@+id/etEmail" />
 
     <EditText
-        android:id="@+id/etEmail3"
+        android:id="@+id/etFirstName"
         android:layout_width="148dp"
         android:layout_height="47dp"
         android:layout_marginStart="42dp"
@@ -123,12 +125,12 @@
         android:inputType="textEmailAddress"
         android:paddingStart="10dp"
         app:layout_constraintBottom_toTopOf="@+id/etEmail"
-        app:layout_constraintEnd_toStartOf="@+id/etEmail7"
+        app:layout_constraintEnd_toStartOf="@+id/etLastName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageButton" />
 
     <EditText
-        android:id="@+id/etEmail7"
+        android:id="@+id/etLastName"
         android:layout_width="149dp"
         android:layout_height="47dp"
         android:layout_marginStart="31dp"
@@ -142,7 +144,7 @@
         android:paddingStart="10dp"
         app:layout_constraintBottom_toTopOf="@+id/etEmail"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/etEmail3"
+        app:layout_constraintStart_toEndOf="@+id/etFirstName"
         app:layout_constraintTop_toBottomOf="@+id/imageButton" />
 
     <EditText
@@ -155,12 +157,12 @@
         android:hint="Email"
         android:inputType="textEmailAddress"
         android:paddingStart="10dp"
-        app:layout_constraintEnd_toEndOf="@+id/etEmail7"
-        app:layout_constraintStart_toStartOf="@+id/etEmail3"
-        app:layout_constraintTop_toBottomOf="@+id/etEmail3" />
+        app:layout_constraintEnd_toEndOf="@+id/etLastName"
+        app:layout_constraintStart_toStartOf="@+id/etFirstName"
+        app:layout_constraintTop_toBottomOf="@+id/etFirstName" />
 
     <EditText
-        android:id="@+id/etEmail4"
+        android:id="@+id/etPassword"
         android:layout_width="329dp"
         android:layout_height="47dp"
         android:layout_marginTop="12dp"
@@ -169,9 +171,9 @@
         android:hint="Password"
         android:inputType="textEmailAddress"
         android:paddingStart="10dp"
-        app:layout_constraintEnd_toEndOf="@+id/etEmail6"
-        app:layout_constraintStart_toStartOf="@+id/etEmail6"
-        app:layout_constraintTop_toBottomOf="@+id/etEmail6" />
+        app:layout_constraintEnd_toEndOf="@+id/etPhoneNumber"
+        app:layout_constraintStart_toStartOf="@+id/etPhoneNumber"
+        app:layout_constraintTop_toBottomOf="@+id/etPhoneNumber" />
 
     <ImageButton
         android:id="@+id/imageButton"

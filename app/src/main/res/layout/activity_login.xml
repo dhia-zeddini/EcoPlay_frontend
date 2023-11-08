@@ -59,7 +59,7 @@
         tools:srcCompat="@drawable/clipart" />
 
     <TextView
-        android:id="@+id/tvSignUpPrompt"
+        android:id="@+id/tvBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="51dp"
@@ -68,10 +68,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
+        app:layout_constraintTop_toBottomOf="@+id/btnSend" />
 
     <Button
-        android:id="@+id/btnLogin"
+        android:id="@+id/btnSend"
         android:layout_width="175dp"
         android:layout_height="0dp"
         android:layout_marginBottom="129dp"
@@ -79,7 +79,7 @@
         android:text="Login"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/tvSignUpPrompt"
+        app:layout_constraintBottom_toTopOf="@+id/tvBack"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etPwd" />
@@ -111,7 +111,7 @@
         android:hint="Password"
         android:inputType="text|textPassword"
         android:paddingStart="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnLogin"
+        app:layout_constraintBottom_toTopOf="@+id/btnSend"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etEmail" />
