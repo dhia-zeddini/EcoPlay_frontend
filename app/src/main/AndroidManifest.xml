@@ -13,6 +13,9 @@
         android:theme="@style/Theme.EcoPlay_Front"
         tools:targetApi="31">
         <activity
+            android:name=".view.WheelActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.ResetPwdActivity"
             android:exported="false" />
         <activity

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="300dp"
+    android:layout_height="304.97dp">
+
+    <RelativeLayout
+        android:id="@+id/frame_9"
+        android:layout_width="300dp"
+        android:layout_height="304.97dp"
+
+        android:elevation="20dp"
+
+        >
+
+        <TextView
+            android:id="@+id/our_goal_is"
+            android:layout_width="273dp"
+            android:layout_height="99dp"
+            android:gravity="center_horizontal|top"
+            android:text="Our goal is to plant one billion trees to help restore our global forests. It's a big number, but we know we can do it with your help."
+
+            android:textSize="14sp"
+            android:translationX="20dp"
+            android:translationY="190dp" />
+
+        <TextView
+            android:id="@+id/plant_a_tre"
+            android:layout_width="164dp"
+            android:layout_height="21.33dp"
+            android:gravity="center_horizontal|top"
+            android:text="plant_a_tree"
+            android:translationX="50dp"
+            android:translationY="170dp" />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/frame_12"
+        android:layout_width="270.97dp"
+        android:layout_height="163.4dp"
+        android:clipToOutline="true"
+        android:translationX="20dp">
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/img_3" />
+    </RelativeLayout>
+
+
+</RelativeLayout>
