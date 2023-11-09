@@ -52,7 +52,7 @@
         android:layout_width="106dp"
         android:layout_height="0dp"
         android:layout_marginBottom="62dp"
-        app:layout_constraintBottom_toTopOf="@+id/etEmail"
+        app:layout_constraintBottom_toTopOf="@+id/etOtp4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvLoginHeader"
@@ -85,7 +85,7 @@
         app:layout_constraintTop_toBottomOf="@+id/etPwd" />
 
     <EditText
-        android:id="@+id/etEmail"
+        android:id="@+id/etOtp4"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="19dp"
@@ -114,7 +114,7 @@
         app:layout_constraintBottom_toTopOf="@+id/btnSend"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/etOtp4" />
 
     <TextView
         android:id="@+id/tvForgotPassword"

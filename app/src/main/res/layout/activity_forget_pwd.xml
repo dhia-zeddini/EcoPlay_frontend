@@ -70,10 +70,10 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/etOtp4" />
 
     <EditText
-        android:id="@+id/etEmail"
+        android:id="@+id/etOtp4"
         android:layout_width="329dp"
         android:layout_height="73dp"
         android:layout_marginStart="41dp"

@@ -32,7 +32,7 @@ class RegisterActivity : AppCompatActivity() {
         binding=ActivityRegisterBinding.inflate(LayoutInflater.from(this))
 
 
-        var emailInput: EditText =findViewById(R.id.etEmail)
+        var emailInput: EditText =findViewById(R.id.etOtp4)
         var firstNameInput: EditText =findViewById(R.id.etFirstName)
         var lastNameInput: EditText =findViewById(R.id.etLastName)
         var phoneInput: EditText =findViewById(R.id.etPhoneNumber)

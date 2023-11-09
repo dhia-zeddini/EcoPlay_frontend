@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.EditText
 import android.widget.TextView
-import com.example.ecoplay_front.MainActivity
 import com.example.ecoplay_front.R
 import com.example.ecoplay_front.apiService.UserService
 import com.example.ecoplay_front.model.LoginRequestModel
@@ -25,7 +24,7 @@ class ForgetPwdActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_forget_pwd)
 
-        var emailInput: EditText =findViewById(R.id.etEmail)
+        var emailInput: EditText =findViewById(R.id.etOtp4)
 
 
 
@@ -65,7 +64,9 @@ class ForgetPwdActivity : AppCompatActivity() {
                         // Log success message with response code
                         Log.d("RetrofitCall", "Response successful: ${response.code()}")
 
-                        startActivity(Intent(applicationContext, OtpActivity::class.java))
+                        val intent=Intent(applicationContext, OtpActivity::class.java)
+                        intent.putExtra("token",response.body()?.token)
+                        startActivity(intent)
                         finish()
 
                     } else if (response.code()==404){

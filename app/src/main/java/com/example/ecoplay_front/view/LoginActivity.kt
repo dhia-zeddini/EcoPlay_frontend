@@ -34,7 +34,7 @@ class LoginActivity : AppCompatActivity() {
         binding=ActivityLoginBinding.inflate(LayoutInflater.from(this))
         setContentView(binding.root)
 
-        var emailInput:EditText=findViewById(R.id.etEmail)
+        var emailInput:EditText=findViewById(R.id.etOtp4)
         var pwdInput:EditText=findViewById(R.id.etPwd)
         var btnLogin:Button=findViewById(R.id.btnSend)
 

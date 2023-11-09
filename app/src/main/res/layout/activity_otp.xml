@@ -100,51 +100,56 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="286dp"
-        android:layout_height="66dp"
+        android:layout_width="269dp"
+        android:layout_height="62dp"
         android:layout_marginStart="77dp"
-        android:layout_marginTop="47dp"
+        android:layout_marginTop="44dp"
         android:layout_marginEnd="73dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2">
 
         <EditText
-            android:id="@+id/etEmail8"
+            android:id="@+id/etOtp1"
             android:layout_width="63dp"
             android:layout_height="64dp"
             android:background="@drawable/input_shape"
             android:drawableLeft="@drawable/otp_shape"
             android:inputType="textEmailAddress"
-            android:paddingStart="10dp" />
+            android:paddingStart="10dp"
+            android:textAlignment="center" />
 
         <EditText
-            android:id="@+id/etEmail9"
+            android:id="@+id/etOtp2"
             android:layout_width="63dp"
             android:layout_height="64dp"
             android:background="@drawable/input_shape"
             android:drawableLeft="@drawable/otp_shape"
             android:inputType="textEmailAddress"
-            android:paddingStart="10dp" />
+            android:paddingStart="10dp"
+            android:textAlignment="center" />
 
         <EditText
-            android:id="@+id/etEmail10"
+            android:id="@+id/etOtp3"
             android:layout_width="63dp"
             android:layout_height="64dp"
             android:background="@drawable/input_shape"
             android:drawableLeft="@drawable/otp_shape"
             android:inputType="textEmailAddress"
-            android:paddingStart="10dp" />
+            android:paddingStart="10dp"
+            android:textAlignment="center" />
 
         <EditText
-            android:id="@+id/etEmail"
+            android:id="@+id/etOtp4"
             android:layout_width="63dp"
             android:layout_height="64dp"
             android:background="@drawable/input_shape"
             android:drawableLeft="@drawable/otp_shape"
             android:inputType="textEmailAddress"
-            android:paddingStart="10dp" />
+            android:paddingStart="10dp"
+            android:textAlignment="center" />
 
     </LinearLayout>
 
