@@ -9,7 +9,7 @@ import android.widget.TextView
 import com.example.ecoplay_front.R
 import com.example.ecoplay_front.apiService.UserService
 import com.example.ecoplay_front.model.LoginRequestModel
-import com.example.ecoplay_front.model.LoginRespenseModel
+import com.example.ecoplay_front.model.LoginResponseModel
 import com.google.android.material.snackbar.Snackbar
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -44,7 +44,7 @@ class ForgetPwdActivity : AppCompatActivity() {
 
 
 
-        val BASE_URL = "http://192.168.251.18:9001/" // Remplacez cette URL par votre propre URL
+        val BASE_URL = "http://172.16.2.167:9001/" // Remplacez cette URL par votre propre URL
 
         val retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
@@ -58,8 +58,8 @@ class ForgetPwdActivity : AppCompatActivity() {
             val forgetRequestModel = LoginRequestModel(emailInput.text.toString(), "") // Assurez-vous d'avoir les valeurs appropriées pour phoneNumber et password
 
             val call = apiService.forgetPwd(forgetRequestModel)
-            call.enqueue(object : Callback<LoginRespenseModel> {
-                override fun onResponse(call: Call<LoginRespenseModel>, response: Response<LoginRespenseModel>) {
+            call.enqueue(object : Callback<LoginResponseModel> {
+                override fun onResponse(call: Call<LoginResponseModel>, response: Response<LoginResponseModel>) {
                     if (response.isSuccessful) {
                         // Log success message with response code
                         Log.d("RetrofitCall", "Response successful: ${response.code()}")
@@ -84,7 +84,7 @@ class ForgetPwdActivity : AppCompatActivity() {
                     Log.d("RetrofitCall", "Response body: ${response.body()}")
                 }
 
-                override fun onFailure(call: Call<LoginRespenseModel>, t: Throwable) {
+                override fun onFailure(call: Call<LoginResponseModel>, t: Throwable) {
                     // Log error throwable
                     Log.d("RetrofitCall", "Call failed with error", t)
 

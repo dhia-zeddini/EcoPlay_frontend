@@ -51,7 +51,7 @@ class RegisterActivity : AppCompatActivity() {
             .addInterceptor(logging)
             .build()
 
-        val BASE_URL = "http://192.168.1.116:9001/" // Remplacez cette URL par votre propre URL
+        val BASE_URL = "http://172.16.2.167:9001/" // Remplacez cette URL par votre propre URL
 
         val retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)

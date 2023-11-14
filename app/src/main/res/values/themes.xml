@@ -6,4 +6,15 @@
     </style>
 
     <style name="Theme.EcoPlay_Front" parent="Base.Theme.EcoPlay_Front" />
+    <style name="CornerCut" parent="">
+        <item name="cornerFamilyTopLeft">rounded</item>
+        <item name="cornerFamilyTopRight">rounded</item>
+        <item name="cornerFamilyBottomLeft">rounded</item>
+        <item name="cornerFamilyBottomRight">rounded</item>
+        <item name="cornerSizeTopLeft">50%</item>
+        <item name="cornerSizeTopRight">50%</item>
+        <item name="cornerSizeBottomLeft">50%</item>
+        <item name="cornerSizeBottomRight">50%</item>
+
+    </style>
 </resources>
