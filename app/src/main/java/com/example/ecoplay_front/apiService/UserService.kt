@@ -3,12 +3,14 @@ import com.example.ecoplay_front.model.LoginResponseModel
 import com.example.ecoplay_front.model.LoginRequestModel
 import com.example.ecoplay_front.model.RegisterRequestModel
 import com.example.ecoplay_front.model.RegisterResponse
+import com.example.ecoplay_front.model.UpdateResponseModel
 import com.example.ecoplay_front.model.UserModel
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
+import retrofit2.http.PUT
 
 interface UserService  {
     @POST("login")
@@ -26,5 +28,8 @@ interface UserService  {
 
     @GET("user/profile")
     fun profile(@Header("token") token: String?): Call<UserModel>
+
+    @PUT("user")
+    fun updateProfile(@Header("token") token: String?,@Body phone: RegisterRequestModel): Call<UpdateResponseModel>
 
 }

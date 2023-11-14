@@ -16,7 +16,11 @@ import androidx.fragment.app.Fragment
 import com.example.ecoplay_front.R
 import com.example.ecoplay_front.apiService.UserService
 import com.example.ecoplay_front.model.LoginResponseModel
+import com.example.ecoplay_front.model.RegisterRequestModel
+import com.example.ecoplay_front.model.RegisterResponse
+import com.example.ecoplay_front.model.UpdateResponseModel
 import com.example.ecoplay_front.model.UserModel
+import com.example.ecoplay_front.view.LoginActivity
 import com.example.ecoplay_front.view.PREF_FILE
 import com.example.ecoplay_front.view.ProfileActivity
 import com.example.ecoplay_front.view.TOKEN
@@ -35,7 +39,8 @@ class ProfileFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_profile, container, false)
 
-        val privacyBtn: Button? = view.findViewById(R.id.privacyBtn)
+        val privacyBtn: Button = view.findViewById(R.id.privacyBtn)
+        val saveBtn: Button = view.findViewById(R.id.saveBtn)
         val firstName: EditText = view.findViewById(R.id.firstName)
         val lastName: EditText = view.findViewById(R.id.lastName)
         val email: EditText = view.findViewById(R.id.email)
@@ -93,7 +98,59 @@ class ProfileFragment : Fragment() {
                 ).show()
             }
         })
-        privacyBtn?.setOnClickListener {
+
+
+        saveBtn.setOnClickListener {
+
+            val registerRequestModel = RegisterRequestModel(
+                firstName.text.toString(),
+                lastName.text.toString(),
+                email.text.toString(),
+                phone.text.toString(),
+                "",
+                ""
+            )
+            Log.d("RetrofitCall", "Response update body: ${registerRequestModel}")
+                val call = apiService.updateProfile("Bearer ${token}",registerRequestModel)
+                call.enqueue(object : Callback<UpdateResponseModel> {
+                    override fun onResponse(
+                        call: Call<UpdateResponseModel>,
+                        response: Response<UpdateResponseModel>
+                    ) {
+                        if (response.isSuccessful) {
+                            Snackbar.make(
+                                view.findViewById(android.R.id.content),
+                                "Account updated successfully",
+                                Snackbar.LENGTH_SHORT
+                            ).show()
+                            Log.d("RetrofitCall", "Response update successful: ${response.code()}")
+                        } else if (response.code() == 403) {
+                            Snackbar.make(
+                                view.findViewById(android.R.id.content),
+                                "You are not authorized ",
+                                Snackbar.LENGTH_SHORT
+                            ).show()
+                            Log.d("RetrofitCall", "Response not successful: ${response.code()}")
+                        }
+
+                        Log.d("RetrofitCall", "Response update body: ${response.body()}")
+                    }
+
+                    override fun onFailure(call: Call<UpdateResponseModel>, t: Throwable) {
+                        // Log error throwable
+                        Log.d("RetrofitCall", "Call failed with error", t)
+
+                        Snackbar.make(
+                            view.findViewById(android.R.id.content),
+                            "server error",
+                            Snackbar.LENGTH_SHORT
+                        ).show()
+                    }
+                })
+
+
+        }
+        privacyBtn.setOnClickListener {
             if (privacyLayout?.isVisible == true) {
                 privacyLayout.visibility = View.GONE
                 privacyBtn.setCompoundDrawablesWithIntrinsicBounds(null, null, suffixIconDown, null)
