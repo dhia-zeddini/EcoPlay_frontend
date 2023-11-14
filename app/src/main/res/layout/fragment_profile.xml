@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:layout_marginStart="10dp"
     android:layout_marginEnd="10dp"
-    tools:context=".view.ProfileFragment">
+    tools:context=".view.fragments.ProfileFragment">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -52,7 +52,6 @@
                         android:ems="10"
                         android:inputType="text"
                         android:minHeight="48dp"
-                        android:text="Name"
                         android:textAlignment="center"
                         android:textSize="20sp" />
 
@@ -65,7 +64,6 @@
                         android:ems="10"
                         android:inputType="text"
                         android:minHeight="48dp"
-                        android:text="Name"
                         android:textAlignment="center"
                         android:textSize="20sp" />
                 </LinearLayout>
@@ -204,7 +202,7 @@
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
                 android:drawableEnd="@drawable/arrow_down"
-                android:text="Privacy"
+                android:text="Security"
                 android:textAlignment="viewStart"
                 android:textColor="#03A9F4"
                 android:textSize="20sp" />

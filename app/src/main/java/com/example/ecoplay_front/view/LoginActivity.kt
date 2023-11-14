@@ -24,8 +24,11 @@ import retrofit2.converter.gson.GsonConverterFactory
 import okhttp3.logging.HttpLoggingInterceptor
 
 
-
-
+const val PREF_FILE = "ECOPLAY_PREF"
+const val EMAIL = "EMAIL"
+const val TOKEN = "TOKEN"
+const val LOGGED = "LOGGED"
+const val PASSWORD = "PASSWORD"
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
 
@@ -50,11 +53,14 @@ class LoginActivity : AppCompatActivity() {
             .addInterceptor(logging)
             .build()
 
+        val mSharedPreferences = getSharedPreferences(PREF_FILE, MODE_PRIVATE)
 
+        if (mSharedPreferences.getBoolean(LOGGED,false)) {
+            startActivity(Intent(this, ProfileActivity::class.java))
+            finish()
+        }
 
-
-
-        val BASE_URL = "http://172.16.2.167:9001/" // Remplacez cette URL par votre propre URL
+        val BASE_URL = "http://192.168.1.116:9001/"
 
         val retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
@@ -63,9 +69,13 @@ class LoginActivity : AppCompatActivity() {
 
         val apiService = retrofit.create(UserService::class.java)
 
+
+
         btnLogin.setOnClickListener {
-            Log.d("RetrofitCall", "Response successful: ${emailInput.text.toString()}")
-            val loginRequestModel = LoginRequestModel(emailInput.text.toString(), pwdInput.text.toString()) // Assurez-vous d'avoir les valeurs appropriées pour phoneNumber et password
+            var  email:String=emailInput.text.toString()
+            var  password:String=pwdInput.text.toString()
+            Log.d("RetrofitCall", "Response successful: ${email}")
+            val loginRequestModel = LoginRequestModel(email, password) // Assurez-vous d'avoir les valeurs appropriées pour phoneNumber et password
 
             val call = apiService.login(loginRequestModel)
             call.enqueue(object : Callback<LoginResponseModel> {
@@ -73,8 +83,12 @@ class LoginActivity : AppCompatActivity() {
                     if (response.isSuccessful) {
                         // Log success message with response code
                         Log.d("RetrofitCall", "Response successful: ${response.code()}")
+                        mSharedPreferences.edit().apply{
+                            putString(TOKEN, response.body()?.token)
+                            putBoolean(LOGGED,true)
 
-                        startActivity(Intent(applicationContext, MainActivity::class.java))
+                        }.apply()
+                        startActivity(Intent(applicationContext, ProfileActivity::class.java))
                         finish()
 
 

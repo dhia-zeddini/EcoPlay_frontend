@@ -67,7 +67,7 @@
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/ativityNav"
+                android:id="@+id/activityNav"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -82,9 +82,9 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView"
-        android:name="com.example.ecoplay_front.view.ProfileFragment"
-        android:layout_width="410dp"
-        android:layout_height="wrap_content"
+        android:name="com.example.ecoplay_front.view.fragments.ProfileFragment"
+        android:layout_width="413dp"
+        android:layout_height="522dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
