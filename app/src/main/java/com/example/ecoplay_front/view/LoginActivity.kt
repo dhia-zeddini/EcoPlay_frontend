@@ -60,7 +60,7 @@ class LoginActivity : AppCompatActivity() {
             finish()
         }
 
-        val BASE_URL = "http://192.168.1.116:9001/"
+        val BASE_URL = "http://192.168.1.14:9001/"
 
         val retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
