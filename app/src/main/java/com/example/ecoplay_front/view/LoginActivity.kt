@@ -55,10 +55,7 @@ class LoginActivity : AppCompatActivity() {
 
         val mSharedPreferences = getSharedPreferences(PREF_FILE, MODE_PRIVATE)
 
-        if (mSharedPreferences.getBoolean(LOGGED,false)) {
-            startActivity(Intent(this, ProfileActivity::class.java))
-            finish()
-        }
+
 
         val BASE_URL = "http://192.168.1.14:9001/"
 
