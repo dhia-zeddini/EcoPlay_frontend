@@ -11,6 +11,8 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
+import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricManager.Authenticators.BIOMETRIC_STRONG
@@ -27,7 +29,9 @@ import com.example.ecoplay_front.model.RegisterRequestModel
 import com.example.ecoplay_front.model.RegisterResponse
 import com.example.ecoplay_front.model.UpdateResponseModel
 import com.example.ecoplay_front.model.UserModel
+import com.example.ecoplay_front.view.LOGGED
 import com.example.ecoplay_front.view.LoginActivity
+import com.example.ecoplay_front.view.OtpActivity
 import com.example.ecoplay_front.view.PREF_FILE
 import com.example.ecoplay_front.view.ProfileActivity
 import com.example.ecoplay_front.view.TOKEN
@@ -61,6 +65,7 @@ class ProfileFragment : Fragment() {
         val lastName: EditText = view.findViewById(R.id.lastName)
         val email: EditText = view.findViewById(R.id.email)
         val phone: EditText = view.findViewById(R.id.phoneNumber)
+       val deleteBtn:TextView=view.findViewById(R.id.deleteBtn)
        privacyLayout = view.findViewById(R.id.privacyLayout)
        suffixIconUp = requireContext().getDrawable(R.drawable.arrow_up)!!
        suffixIconDown = requireContext().getDrawable(R.drawable.arrow_down)!!
@@ -167,6 +172,64 @@ class ProfileFragment : Fragment() {
 
 
         }
+
+
+       deleteBtn.setOnClickListener{
+               val builder = AlertDialog.Builder(requireContext())
+               builder.setTitle("Delete Account")
+                   .setMessage("Are you sure you want to delete your account? This action cannot be undone.")
+
+
+               builder.setPositiveButton("Delete") { dialog, _ ->
+                   dialog.dismiss()
+                   val call = apiService.deleteAccount("Bearer $token")
+                   call.enqueue(object : Callback<UpdateResponseModel> {
+                       override fun onResponse(call: Call<UpdateResponseModel>, response: Response<UpdateResponseModel>) {
+                           if (response.isSuccessful) {
+                               Log.d("RetrofitCall", "Profile Response successful: ${response.code()}")
+                               clearSharedPreferences()
+                               val intent=Intent(requireContext(), LoginActivity::class.java)
+                               startActivity(intent)
+
+
+
+                           } else if (response.code()==403){
+                               Snackbar.make(
+                                   view.findViewById(android.R.id.content),
+                                   "You are not authorized ",
+                                   Snackbar.LENGTH_SHORT
+                               ).show()
+                               // Log error with response code
+                               Log.d("RetrofitCall", "Response not successful: ${response.code()}")
+                           }
+
+                           Log.d("RetrofitCall", " Response code: ${response.code()}")
+                           Log.d("RetrofitCall", "Response body: ${response.body()}")
+                       }
+
+                       override fun onFailure(call: Call<UpdateResponseModel>, t: Throwable) {
+                           // Log error throwable
+                           Log.d("RetrofitCall", "Call failed with error", t)
+
+                           Snackbar.make(
+                               view.findViewById(android.R.id.content),
+                               "server error",
+                               Snackbar.LENGTH_SHORT
+                           ).show()
+                       }
+                   })
+               }
+
+               builder.setNegativeButton("Cancel") { dialog, _ ->
+
+                   dialog.dismiss()
+               }
+
+
+               val alertDialog: AlertDialog = builder.create()
+               alertDialog.show()
+           }
+
         privacyBtn.setOnClickListener {
 
             if (privacyLayout?.isVisible == true) {
@@ -269,5 +332,13 @@ class ProfileFragment : Fragment() {
         }
 
 
+    }
+    private fun clearSharedPreferences() {
+        // Clear the shared preferences
+        val mSharedPreferences = requireContext().getSharedPreferences(PREF_FILE, AppCompatActivity.MODE_PRIVATE)
+        val editor = mSharedPreferences.edit()
+        editor.remove(TOKEN)
+        editor.remove(LOGGED)
+        editor.apply()
     }
 }

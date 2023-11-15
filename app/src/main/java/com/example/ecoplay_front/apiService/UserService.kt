@@ -7,6 +7,7 @@ import com.example.ecoplay_front.model.UpdateResponseModel
 import com.example.ecoplay_front.model.UserModel
 import retrofit2.Call
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
@@ -31,5 +32,8 @@ interface UserService  {
 
     @PUT("user")
     fun updateProfile(@Header("token") token: String?,@Body phone: RegisterRequestModel): Call<UpdateResponseModel>
+
+    @DELETE("user")
+    fun deleteAccount(@Header("token") token: String?): Call<UpdateResponseModel>
 
 }
