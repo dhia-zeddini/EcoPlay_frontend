@@ -66,6 +66,7 @@ class ProfileFragment : Fragment() {
         val email: EditText = view.findViewById(R.id.email)
         val phone: EditText = view.findViewById(R.id.phoneNumber)
        val deleteBtn:TextView=view.findViewById(R.id.deleteBtn)
+       val logoutBtn:TextView=view.findViewById(R.id.logoutBtn)
        privacyLayout = view.findViewById(R.id.privacyLayout)
        suffixIconUp = requireContext().getDrawable(R.drawable.arrow_up)!!
        suffixIconDown = requireContext().getDrawable(R.drawable.arrow_down)!!
@@ -75,7 +76,7 @@ class ProfileFragment : Fragment() {
         var token:String?=mSharedPreferences.getString(TOKEN,"no token")
         Log.d("RetrofitCall","prefs${token}")
 
-        val BASE_URL = "http://192.168.1.14:9001/"
+        val BASE_URL = "http://192.168.1.116:9001/"
 
         val retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
@@ -140,10 +141,12 @@ class ProfileFragment : Fragment() {
                         response: Response<UpdateResponseModel>
                     ) {
                         if (response.isSuccessful) {
-                            Snackbar.make(
-                                view.findViewById(android.R.id.content),
+                            Log.d("RetrofitCall", " update successful: ")
+
+                           Snackbar.make(requireContext(),view.findViewById(R.id.profileFragment),
                                 "Account updated successfully",
                                 Snackbar.LENGTH_SHORT
+
                             ).show()
                             Log.d("RetrofitCall", "Response update successful: ${response.code()}")
                         } else if (response.code() == 403) {
@@ -230,6 +233,30 @@ class ProfileFragment : Fragment() {
                alertDialog.show()
            }
 
+       logoutBtn.setOnClickListener{
+           val builder = AlertDialog.Builder(requireContext())
+           builder.setTitle("Logout")
+               .setMessage("Are you sure you want to logout?")
+
+
+           builder.setPositiveButton("Ok") { dialog, _ ->
+               dialog.dismiss()
+
+                           clearSharedPreferences()
+                           val intent=Intent(requireContext(), LoginActivity::class.java)
+                           startActivity(intent)
+           }
+
+           builder.setNegativeButton("Cancel") { dialog, _ ->
+
+               dialog.dismiss()
+           }
+
+
+           val alertDialog: AlertDialog = builder.create()
+           alertDialog.show()
+       }
+
         privacyBtn.setOnClickListener {
 
             if (privacyLayout?.isVisible == true) {
@@ -287,8 +314,8 @@ class ProfileFragment : Fragment() {
     }
     private fun createPromptInfo(){
         promptInfo=BiometricPrompt.PromptInfo.Builder()
-            .setTitle("Biometric for app")
-            .setSubtitle("Log in using your biometric credential")
+            .setTitle("Biometric for EcoPlay")
+            .setSubtitle("biometric credential")
             .setNegativeButtonText("Cancel")
             .setAllowedAuthenticators(BIOMETRIC_STRONG)  // Specify fingerprint modality
             .build()

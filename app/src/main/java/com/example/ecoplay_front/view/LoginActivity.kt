@@ -14,6 +14,12 @@ import com.example.ecoplay_front.apiService.UserService
 import com.example.ecoplay_front.databinding.ActivityLoginBinding
 import com.example.ecoplay_front.model.LoginResponseModel
 import com.example.ecoplay_front.model.LoginRequestModel
+import com.facebook.CallbackManager
+import com.facebook.FacebookCallback
+import com.facebook.FacebookException
+import com.facebook.GraphRequest
+import com.facebook.login.LoginResult
+import com.facebook.login.widget.LoginButton
 import com.google.android.material.snackbar.Snackbar
 import okhttp3.OkHttpClient
 import retrofit2.Call
@@ -22,6 +28,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import okhttp3.logging.HttpLoggingInterceptor
+import java.util.Arrays
 
 
 const val PREF_FILE = "ECOPLAY_PREF"
@@ -29,12 +36,15 @@ const val EMAIL = "EMAIL"
 const val TOKEN = "TOKEN"
 const val LOGGED = "LOGGED"
 const val PASSWORD = "PASSWORD"
+
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
-
+    lateinit var callbackManager:CallbackManager
+    lateinit var facebookLogin:LoginButton
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding=ActivityLoginBinding.inflate(LayoutInflater.from(this))
+
         setContentView(binding.root)
 
         var emailInput:EditText=findViewById(R.id.etOtp4)
@@ -57,7 +67,7 @@ class LoginActivity : AppCompatActivity() {
 
 
 
-        val BASE_URL = "http://192.168.1.14:9001/"
+        val BASE_URL = "http://192.168.1.116:9001/"
 
         val retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
@@ -139,6 +149,53 @@ class LoginActivity : AppCompatActivity() {
 
         }
 
+        callbackManager = CallbackManager.Factory.create();
+
+
+
+
+        facebookLogin = findViewById(R.id.facebookLogin_button);
+        facebookLogin.setReadPermissions(Arrays.asList(EMAIL));
+        // If you are using in a fragment, call loginButton.setFragment(this);
+
+        // Callback registration
+        // ...
+
+        facebookLogin.registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
+            override fun onSuccess(loginResult: LoginResult) {
+                Log.d("FACEBOOK", "facebook token: " + loginResult.accessToken.token)
+
+                val request = GraphRequest.newMeRequest(
+                    loginResult.accessToken,
+                    GraphRequest.GraphJSONObjectCallback { obj, response ->
+                        Log.d("FACEBOOK", "facebook name: " + obj?.getString("name"))
+                    })
+
+                val parameters = Bundle()
+                parameters.putString("fields", "id,name,link")
+                request.parameters = parameters
+                request.executeAsync()
+            }
+
+            override fun onCancel() {
+                Log.d("FACEBOOK", "facebook onCancel ")
+            }
+
+            override fun onError(exception: FacebookException) {
+                Log.d("FACEBOOK", "facebook onError: " + exception.message)
+            }
+        })
+
+
+
+
+    }
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        callbackManager.onActivityResult(requestCode, resultCode, data);
     }
 }
+
 
