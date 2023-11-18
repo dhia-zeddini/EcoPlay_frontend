@@ -8,11 +8,14 @@ import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import androidx.activity.viewModels
+import androidx.lifecycle.Observer
 import com.example.ecoplay_front.R
 import com.example.ecoplay_front.apiService.UserService
 import com.example.ecoplay_front.databinding.ActivityLoginBinding
 import com.example.ecoplay_front.model.LoginResponseModel
 import com.example.ecoplay_front.model.LoginRequestModel
+import com.example.ecoplay_front.viewModel.LoginViewModel
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
 import com.facebook.FacebookException
@@ -40,6 +43,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     lateinit var callbackManager:CallbackManager
     lateinit var facebookLogin:LoginButton
+    private val viewModel by viewModels<LoginViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding=ActivityLoginBinding.inflate(LayoutInflater.from(this))
@@ -66,66 +70,29 @@ class LoginActivity : AppCompatActivity() {
             .addInterceptor(logging)
             .build()
 
-        val apiService = UserService.create()
+
 
         btnLogin.setOnClickListener {
-            var  email:String=emailInput.text.toString()
-            var  password:String=pwdInput.text.toString()
-            Log.d("RetrofitCall", "Response successful: ${email}")
-            val loginRequestModel = LoginRequestModel(email, password) // Assurez-vous d'avoir les valeurs appropriées pour phoneNumber et password
-
-            val call = apiService.login(loginRequestModel)
-            call.enqueue(object : Callback<LoginResponseModel> {
-                override fun onResponse(call: Call<LoginResponseModel>, response: Response<LoginResponseModel>) {
-                    if (response.isSuccessful) {
-                        // Log success message with response code
-                        Log.d("RetrofitCall", "Response successful: ${response.code()}")
-                        mSharedPreferences.edit().apply{
-                            putString(TOKEN, response.body()?.token)
-                            putBoolean(LOGGED,true)
-
-                        }.apply()
-                        startActivity(Intent(applicationContext, ProfileActivity::class.java))
-                        finish()
-
-
-
-                } else if (response.code()==404){
-                        Snackbar.make(
-                            findViewById(android.R.id.content),
-                            "User does not exist ",
-                            Snackbar.LENGTH_SHORT
-                        ).show()
-                        // Log error with response code
-                        Log.d("RetrofitCall", "Response not successful: ${response.code()}")
-                    }else if (response.code()==401){
-                        Snackbar.make(
-                            findViewById(android.R.id.content),
-                            "Invalid password",
-                            Snackbar.LENGTH_SHORT
-                        ).show()
-                        // Log error with response code
-                        Log.d("RetrofitCall", "Response not successful: ${response.code()}")
-                    }
-
-                    // Optionally log the raw JSON response body
-                    Log.d("RetrofitCall", "Response body: ${response.body()}")
-                }
-
-                override fun onFailure(call: Call<LoginResponseModel>, t: Throwable) {
-                    // Log error throwable
-                    Log.d("RetrofitCall", "Call failed with error", t)
-
-                    Snackbar.make(
-                        findViewById(android.R.id.content),
-                        "server error",
-                        Snackbar.LENGTH_SHORT
-                    ).show()
-                }
-            })
-
-
+            val email = emailInput.text.toString()
+            val password = pwdInput.text.toString()
+            viewModel.login(email, password)
         }
+
+        // Observing LiveData from ViewModel
+        viewModel.loginResponse.observe(this, Observer { response ->
+            Log.d("RetrofitCall", "Response successful: $response")
+            mSharedPreferences.edit().apply{
+                putString(TOKEN, response?.token)
+                putBoolean(LOGGED,true)
+
+            }.apply()
+            startActivity(Intent(applicationContext, ProfileActivity::class.java))
+            finish()
+        })
+
+        viewModel.errorMessage.observe(this, Observer { message ->
+            Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_SHORT).show()
+        })
 
         goToRegister.setOnClickListener {
             startActivity(Intent(applicationContext, RegisterActivity::class.java))

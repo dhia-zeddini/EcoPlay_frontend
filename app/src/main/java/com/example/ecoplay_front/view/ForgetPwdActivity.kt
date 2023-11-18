@@ -100,7 +100,7 @@ class ForgetPwdActivity : AppCompatActivity() {
         }
 
         back.setOnClickListener {
-            startActivity(Intent(applicationContext, RegisterActivity::class.java))
+            startActivity(Intent(applicationContext, LoginActivity::class.java))
             finish()
 
         }
