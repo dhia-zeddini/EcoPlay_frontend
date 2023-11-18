@@ -1,4 +1,4 @@
-package com.example.ecoplay_front.view.fragments
+package com.example.ecoplay_front.fragments
 
 import android.content.Intent
 import android.graphics.drawable.Drawable
@@ -76,7 +76,7 @@ class ProfileFragment : Fragment() {
         var token:String?=mSharedPreferences.getString(TOKEN,"no token")
         Log.d("RetrofitCall","prefs${token}")
 
-        val BASE_URL = "http://192.168.1.116:9001/"
+        val BASE_URL = "http://192.168.1.4:9002/"
 
         val retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)

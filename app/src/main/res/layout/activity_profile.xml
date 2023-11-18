@@ -82,7 +82,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView"
-        android:name="com.example.ecoplay_front.view.fragments.ProfileFragment"
+        android:name="com.example.ecoplay_front.fragments.ProfileFragment"
         android:layout_width="413dp"
         android:layout_height="522dp"
         app:layout_constraintEnd_toEndOf="parent"

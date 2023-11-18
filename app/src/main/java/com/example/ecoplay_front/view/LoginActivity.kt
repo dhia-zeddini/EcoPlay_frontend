@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import com.example.ecoplay_front.MainActivity
 import com.example.ecoplay_front.R
 import com.example.ecoplay_front.apiService.UserService
 import com.example.ecoplay_front.databinding.ActivityLoginBinding
@@ -55,7 +54,11 @@ class LoginActivity : AppCompatActivity() {
         var goToRegister:TextView=findViewById(R.id.tvBack)
         var goToForgetPwd:TextView=findViewById(R.id.tvForgotPassword)
 
-
+        val mSharedPreferences = getSharedPreferences(PREF_FILE, MODE_PRIVATE)
+        if (mSharedPreferences.getBoolean(LOGGED,false)) {
+            startActivity(Intent(this, ProfileActivity::class.java))
+            finish()
+        }
         val logging = HttpLoggingInterceptor()
         logging.setLevel(HttpLoggingInterceptor.Level.BODY)
 
@@ -63,11 +66,10 @@ class LoginActivity : AppCompatActivity() {
             .addInterceptor(logging)
             .build()
 
-        val mSharedPreferences = getSharedPreferences(PREF_FILE, MODE_PRIVATE)
 
 
 
-        val BASE_URL = "http://192.168.1.116:9001/"
+        val BASE_URL = "http://192.168.1.4:9002/"
 
         val retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)

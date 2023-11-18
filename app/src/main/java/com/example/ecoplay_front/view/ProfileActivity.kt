@@ -7,9 +7,9 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.ecoplay_front.R
-import com.example.ecoplay_front.view.fragments.AchivementsFragment
-import com.example.ecoplay_front.view.fragments.ActivityFragment
-import com.example.ecoplay_front.view.fragments.ProfileFragment
+import com.example.ecoplay_front.fragments.AchivementsFragment
+import com.example.ecoplay_front.fragments.ActivityFragment
+import com.example.ecoplay_front.fragments.ProfileFragment
 
 class ProfileActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

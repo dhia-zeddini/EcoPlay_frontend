@@ -1,4 +1,4 @@
-package com.example.ecoplay_front.view.fragments
+package com.example.ecoplay_front.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
