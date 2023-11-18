@@ -5,7 +5,10 @@ import com.example.ecoplay_front.model.RegisterRequestModel
 import com.example.ecoplay_front.model.RegisterResponse
 import com.example.ecoplay_front.model.UpdateResponseModel
 import com.example.ecoplay_front.model.UserModel
+import com.example.ecoplay_front.uttil.Constants.BASE_URL
 import retrofit2.Call
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
@@ -35,5 +38,21 @@ interface UserService  {
 
     @DELETE("user")
     fun deleteAccount(@Header("token") token: String?): Call<UpdateResponseModel>
+
+
+    companion object{
+
+
+
+        fun create() : UserService {
+
+            val retrofit = Retrofit.Builder()
+                .addConverterFactory(GsonConverterFactory.create())
+                .baseUrl(BASE_URL)
+                .build()
+
+            return retrofit.create(UserService::class.java)
+        }
+    }
 
 }

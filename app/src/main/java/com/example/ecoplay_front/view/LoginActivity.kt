@@ -66,19 +66,7 @@ class LoginActivity : AppCompatActivity() {
             .addInterceptor(logging)
             .build()
 
-
-
-
-        val BASE_URL = "http://192.168.1.4:9002/"
-
-        val retrofit = Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-
-        val apiService = retrofit.create(UserService::class.java)
-
-
+        val apiService = UserService.create()
 
         btnLogin.setOnClickListener {
             var  email:String=emailInput.text.toString()
