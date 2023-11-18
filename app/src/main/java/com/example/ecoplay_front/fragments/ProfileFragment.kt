@@ -258,7 +258,7 @@ class ProfileFragment : Fragment() {
        }
 
         privacyBtn.setOnClickListener {
-
+            Log.d("BIOMETRIC"," bioooo yess")
             if (privacyLayout?.isVisible == true) {
 
                 privacyLayout.visibility = View.GONE
