@@ -2,4 +2,6 @@
 <resources>
     <color name="Primary">#44F1A6</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="dialog_color1">#FDD736</color>
+    <color name="dialog_color2">#3b5796</color>
 </resources>

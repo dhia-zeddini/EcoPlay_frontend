@@ -7,6 +7,8 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
     <string name="ecoplay">ECOPLAY</string>
+    <string name="points_format">Points: %d</string>
+
 
 
 </resources>
