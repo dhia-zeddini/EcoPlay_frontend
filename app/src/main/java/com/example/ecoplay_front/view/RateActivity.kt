@@ -8,6 +8,7 @@ import android.view.animation.ScaleAnimation
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.RatingBar
+import android.widget.Toast
 import com.example.ecoplay_front.R
 
 class RateActivity : AppCompatActivity() {
@@ -47,6 +48,15 @@ class RateActivity : AppCompatActivity() {
                 animateImage(imageRating)
             }
         }
+
+        rateNowButton.setOnClickListener {
+            Toast.makeText(this, "Thanks for voting", Toast.LENGTH_SHORT).show()
+            rateNowButton.postDelayed({
+                finish()
+            }, 1000)
+        }
+
+
 
 
 

@@ -20,7 +20,6 @@ class CommentsAdapter(
     }
 
     fun setComments(newComments: List<Comment>) {
-        // If you need a mutable list inside the adapter, you can create one like this:
         this.comments = newComments.toMutableList()
         notifyDataSetChanged()
     }

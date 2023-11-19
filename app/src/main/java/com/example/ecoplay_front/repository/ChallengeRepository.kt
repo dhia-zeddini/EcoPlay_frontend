@@ -1,14 +1,10 @@
 package com.example.ecoplay_front.repository
 
 import com.example.ecoplay_front.apiService.ChallengeApi
+import com.example.ecoplay_front.apiService.RetrofitService
 import com.example.ecoplay_front.model.Challenge
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.RequestBody
 import okhttp3.ResponseBody
-import retrofit2.Call
 import retrofit2.Callback
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 class ChallengeRepository {
     private val service: ChallengeApi by lazy {
@@ -25,16 +21,5 @@ class ChallengeRepository {
     }
 
 
-    object RetrofitService {
-        private val retrofit: Retrofit by lazy {
-            Retrofit.Builder()
-                .baseUrl("http://192.168.1.115:9001/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
-        }
 
-        fun <T> createService(serviceClass: Class<T>): T {
-            return retrofit.create(serviceClass)
-        }
-    }
 }

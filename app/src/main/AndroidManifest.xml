@@ -33,9 +33,9 @@
         <activity
             android:name=".fragments.AddCommentDialogFragment"
             android:exported="false" />
-        <activity
-            android:name=".view.RateActivity"
-            android:exported="false" />
+        <activity android:name=".view.RateActivity"
+            android:theme="@style/Theme.AppCompat.Dialog"/>
+
         <activity
             android:name=".adapter.CommentsAdapter"
             android:exported="false" />
