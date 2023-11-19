@@ -30,6 +30,9 @@ interface UserService  {
     @POST("otp")
     fun otp(@Header("token") token: String, @Body code: LoginRequestModel): Call<LoginResponseModel>
 
+    @POST("newPwd")
+    fun newPwd(@Header("token") token: String, @Body code: LoginRequestModel): Call<LoginResponseModel>
+
     @GET("user/profile")
     fun profile(@Header("token") token: String?): Call<UserModel>
 

@@ -43,7 +43,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btnSend"
+        android:id="@+id/btnConfirm"
         android:layout_width="175dp"
         android:layout_height="43dp"
         android:layout_marginStart="118dp"
@@ -55,10 +55,10 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etEmail11" />
+        app:layout_constraintTop_toBottomOf="@+id/etConfirmPwd" />
 
     <EditText
-        android:id="@+id/etOtp4"
+        android:id="@+id/etNewPwd"
         android:layout_width="327dp"
         android:layout_height="62dp"
         android:layout_marginStart="41dp"
@@ -67,14 +67,14 @@
         android:background="@drawable/input_shape"
         android:drawableLeft="@drawable/lock_icon"
         android:hint="Password"
-        android:inputType="textEmailAddress"
+        android:inputType="text|textPassword"
         android:paddingStart="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <EditText
-        android:id="@+id/etEmail11"
+        android:id="@+id/etConfirmPwd"
         android:layout_width="329dp"
         android:layout_height="62dp"
         android:layout_marginStart="41dp"
@@ -83,11 +83,11 @@
         android:background="@drawable/input_shape"
         android:drawableLeft="@drawable/lock_icon"
         android:hint="Confirm Password"
-        android:inputType="textEmailAddress"
+        android:inputType="text|textPassword"
         android:paddingStart="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etOtp4" />
+        app:layout_constraintTop_toBottomOf="@+id/etNewPwd" />
 
     <TextView
         android:id="@+id/textView"

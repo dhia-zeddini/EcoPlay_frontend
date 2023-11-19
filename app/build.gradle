@@ -71,6 +71,11 @@ dependencies {
     // Lifecycles only (without ViewModel or LiveData)
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version")
 
+    implementation ("io.github.chaosleung:pinview:1.4.4")
+
+
+
+
 
 
 

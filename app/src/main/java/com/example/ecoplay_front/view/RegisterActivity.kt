@@ -40,7 +40,7 @@ class RegisterActivity : AppCompatActivity() {
 
 
        btnRegister.setOnClickListener {
-            if (pwdInput.text==confirmPwdInput){
+            if (pwdInput.text==confirmPwdInput.text){
                 val registerRequestModel = RegisterRequestModel(
                     firstNameInput.text.toString(),
                     lastNameInput.text.toString(),
