@@ -1,5 +1,5 @@
 package com.example.ecoplay_front.uttil
 
 object Constants {
-    const val BASE_URL = "http://192.168.1.4:9002/"
+    const val BASE_URL = "http://192.168.180.18:9002/"
 }

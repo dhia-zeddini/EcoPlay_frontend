@@ -22,6 +22,7 @@ import androidx.biometric.BiometricPrompt.PromptInfo
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.example.ecoplay_front.R
 import com.example.ecoplay_front.apiService.UserService
 import com.example.ecoplay_front.model.LoginResponseModel
@@ -35,6 +36,7 @@ import com.example.ecoplay_front.view.OtpActivity
 import com.example.ecoplay_front.view.PREF_FILE
 import com.example.ecoplay_front.view.ProfileActivity
 import com.example.ecoplay_front.view.TOKEN
+import com.example.ecoplay_front.viewModel.ProfileViewModel
 import com.google.android.material.snackbar.Snackbar
 import retrofit2.Call
 import retrofit2.Callback
@@ -51,12 +53,14 @@ class ProfileFragment : Fragment() {
     private lateinit var privacyBtn: Button
     private lateinit var suffixIconUp: Drawable
     private lateinit var suffixIconDown: Drawable
-   // var validBio:Boolean=false
+    private val viewModel by viewModels<ProfileViewModel>()
+
+    // var validBio:Boolean=false
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+
         val view = inflater.inflate(R.layout.fragment_profile, container, false)
 
          privacyBtn = view.findViewById(R.id.privacyBtn)
@@ -76,56 +80,19 @@ class ProfileFragment : Fragment() {
         var token:String?=mSharedPreferences.getString(TOKEN,"no token")
         Log.d("RetrofitCall","prefs${token}")
 
-        val BASE_URL = "http://192.168.1.4:9002/"
+       viewModel.getProfile(token ?: "")
 
-        val retrofit = Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-
-        val apiService = retrofit.create(UserService::class.java)
-
-        val call = apiService.profile("Bearer ${token}")
-        call.enqueue(object : Callback<UserModel> {
-            override fun onResponse(call: Call<UserModel>, response: Response<UserModel>) {
-                if (response.isSuccessful) {
-                    Log.d("RetrofitCall", "Profile Response successful: ${response.code()}")
-                    firstName.setText(response.body()?.firstName )
-                    lastName.setText(response.body()?.lastName)
-                    email.setText(response.body()?.email)
-                    phone.setText(response.body()?.phoneNumber)
-
-
-                } else if (response.code()==404){
-                    Snackbar.make(
-                        view.findViewById(android.R.id.content),
-                        "User does not exist ",
-                        Snackbar.LENGTH_SHORT
-                    ).show()
-                    // Log error with response code
-                    Log.d("RetrofitCall", "Response not successful: ${response.code()}")
-                }
-
-                Log.d("RetrofitCall", " Response code: ${response.code()}")
-                Log.d("RetrofitCall", "Response body: ${response.body()}")
-            }
-
-            override fun onFailure(call: Call<UserModel>, t: Throwable) {
-                // Log error throwable
-                Log.d("RetrofitCall", "Call failed with error", t)
-
-                Snackbar.make(
-                    view.findViewById(android.R.id.content),
-                    "server error",
-                    Snackbar.LENGTH_SHORT
-                ).show()
-            }
-        })
+       viewModel.userProfile.observe(viewLifecycleOwner) { userModel ->
+           // Update UI with user profile data
+           firstName.setText(userModel.firstName)
+           lastName.setText(userModel.lastName)
+           email.setText(userModel.email)
+           phone.setText(userModel.phoneNumber)
+       }
 
 
         saveBtn.setOnClickListener {
-
-            val registerRequestModel = RegisterRequestModel(
+            val requestModel = RegisterRequestModel(
                 firstName.text.toString(),
                 lastName.text.toString(),
                 email.text.toString(),
@@ -133,105 +100,47 @@ class ProfileFragment : Fragment() {
                 "",
                 ""
             )
-            Log.d("RetrofitCall", "Response update body: ${registerRequestModel}")
-                val call = apiService.updateProfile("Bearer ${token}",registerRequestModel)
-                call.enqueue(object : Callback<UpdateResponseModel> {
-                    override fun onResponse(
-                        call: Call<UpdateResponseModel>,
-                        response: Response<UpdateResponseModel>
-                    ) {
-                        if (response.isSuccessful) {
-                            Log.d("RetrofitCall", " update successful: ")
-
-                           Snackbar.make(requireContext(),view.findViewById(R.id.profileFragment),
-                                "Account updated successfully",
-                                Snackbar.LENGTH_SHORT
-
-                            ).show()
-                            Log.d("RetrofitCall", "Response update successful: ${response.code()}")
-                        } else if (response.code() == 403) {
-                            Snackbar.make(
-                                view.findViewById(android.R.id.content),
-                                "You are not authorized ",
-                                Snackbar.LENGTH_SHORT
-                            ).show()
-                            Log.d("RetrofitCall", "Response not successful: ${response.code()}")
-                        }
-
-                        Log.d("RetrofitCall", "Response update body: ${response.body()}")
-                    }
-
-                    override fun onFailure(call: Call<UpdateResponseModel>, t: Throwable) {
-                        // Log error throwable
-                        Log.d("RetrofitCall", "Call failed with error", t)
-
-                        Snackbar.make(
-                            view.findViewById(android.R.id.content),
-                            "server error",
-                            Snackbar.LENGTH_SHORT
-                        ).show()
-                    }
-                })
-
-
+            token?.let { viewModel.updateProfile(it, requestModel) }
+        }
+        viewModel.updateResponse.observe(viewLifecycleOwner) { updateResponse ->
+            // Handle update response
+            Snackbar.make(view, "Account updated successfully", Snackbar.LENGTH_SHORT).show()
         }
 
+        viewModel.errorMessage.observe(viewLifecycleOwner) { message ->
+            // Show error message
+            Snackbar.make(view, message, Snackbar.LENGTH_SHORT).show()
+        }
 
-       deleteBtn.setOnClickListener{
-               val builder = AlertDialog.Builder(requireContext())
-               builder.setTitle("Delete Account")
-                   .setMessage("Are you sure you want to delete your account? This action cannot be undone.")
+        deleteBtn.setOnClickListener {
+            val builder = AlertDialog.Builder(requireContext())
+            builder.setTitle("Delete Account")
+                .setMessage("Are you sure you want to delete your account? This action cannot be undone.")
 
+            builder.setPositiveButton("Delete") { dialog, _ ->
+                dialog.dismiss()
+                token?.let { viewModel.deleteAccount(it) }
+            }
 
-               builder.setPositiveButton("Delete") { dialog, _ ->
-                   dialog.dismiss()
-                   val call = apiService.deleteAccount("Bearer $token")
-                   call.enqueue(object : Callback<UpdateResponseModel> {
-                       override fun onResponse(call: Call<UpdateResponseModel>, response: Response<UpdateResponseModel>) {
-                           if (response.isSuccessful) {
-                               Log.d("RetrofitCall", "Profile Response successful: ${response.code()}")
-                               clearSharedPreferences()
-                               val intent=Intent(requireContext(), LoginActivity::class.java)
-                               startActivity(intent)
+            builder.setNegativeButton("Cancel") { dialog, _ ->
+                dialog.dismiss()
+            }
 
+            val alertDialog: AlertDialog = builder.create()
+            alertDialog.show()
+        }
 
+        viewModel.deleteResponse.observe(viewLifecycleOwner) { updateResponse ->
+            clearSharedPreferences()
+            val intent = Intent(requireContext(), LoginActivity::class.java)
+            startActivity(intent)
+            requireActivity().finish()
+        }
 
-                           } else if (response.code()==403){
-                               Snackbar.make(
-                                   view.findViewById(android.R.id.content),
-                                   "You are not authorized ",
-                                   Snackbar.LENGTH_SHORT
-                               ).show()
-                               // Log error with response code
-                               Log.d("RetrofitCall", "Response not successful: ${response.code()}")
-                           }
+        viewModel.errorMessage.observe(viewLifecycleOwner) { message ->
 
-                           Log.d("RetrofitCall", " Response code: ${response.code()}")
-                           Log.d("RetrofitCall", "Response body: ${response.body()}")
-                       }
-
-                       override fun onFailure(call: Call<UpdateResponseModel>, t: Throwable) {
-                           // Log error throwable
-                           Log.d("RetrofitCall", "Call failed with error", t)
-
-                           Snackbar.make(
-                               view.findViewById(android.R.id.content),
-                               "server error",
-                               Snackbar.LENGTH_SHORT
-                           ).show()
-                       }
-                   })
-               }
-
-               builder.setNegativeButton("Cancel") { dialog, _ ->
-
-                   dialog.dismiss()
-               }
-
-
-               val alertDialog: AlertDialog = builder.create()
-               alertDialog.show()
-           }
+            Snackbar.make(view, message, Snackbar.LENGTH_SHORT).show()
+        }
 
        logoutBtn.setOnClickListener{
            val builder = AlertDialog.Builder(requireContext())
