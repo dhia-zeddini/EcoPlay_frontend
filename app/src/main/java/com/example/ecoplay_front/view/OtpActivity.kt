@@ -6,105 +6,49 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.EditText
 import android.widget.TextView
+import androidx.activity.viewModels
 import com.example.ecoplay_front.R
-import com.example.ecoplay_front.apiService.UserService
-import com.example.ecoplay_front.model.LoginRequestModel
-import com.example.ecoplay_front.model.LoginResponseModel
+import com.example.ecoplay_front.viewModel.OtpViewModel
 import com.google.android.material.snackbar.Snackbar
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+
 
 class OtpActivity : AppCompatActivity() {
+    private val viewModel by viewModels<OtpViewModel>()
+    private var token: String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_otp)
-        var token=intent.getSerializableExtra("token")
-        Log.d("RetrofitCall", "Response token: ${token}")
+        token = intent.getStringExtra("token")
+        Log.d("RetrofitCall", "Response token: $token")
 
-        var etOtp1: EditText =findViewById(R.id.etOtp1)
-        var etOtp2: EditText =findViewById(R.id.etOtp2)
-        var etOtp3: EditText =findViewById(R.id.etOtp3)
-        var etOtp4: EditText =findViewById(R.id.etOtp4)
+        val etOtp1: EditText =findViewById(R.id.etOtp1)
+        val etOtp2: EditText =findViewById(R.id.etOtp2)
+        val etOtp3: EditText =findViewById(R.id.etOtp3)
+        val etOtp4: EditText =findViewById(R.id.etOtp4)
 
-
-
-
-        var btnSend: TextView =findViewById(R.id.btnSend)
+        val btnSend: TextView =findViewById(R.id.btnSend)
 
 
-        val logging = HttpLoggingInterceptor()
-        logging.setLevel(HttpLoggingInterceptor.Level.BODY)
+       btnSend.setOnClickListener {
+            val otp = etOtp1.text.toString() + etOtp2.text.toString() +
+                    etOtp3.text.toString() + etOtp4.text.toString()
 
-        val client = OkHttpClient.Builder()
-            .addInterceptor(logging)
-            .build()
-
-
-
-
-
-        val BASE_URL = "http://172.16.2.167:9001/" // Remplacez cette URL par votre propre URL
-
-        val retrofit = Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-
-        val apiService = retrofit.create(UserService::class.java)
-
-        btnSend.setOnClickListener {
-
-            val code=etOtp1.text.toString()+etOtp2.text.toString()+etOtp3.text.toString()+etOtp4.text.toString()
-            val otpRequestModel = LoginRequestModel(code, "") // Assurez-vous d'avoir les valeurs appropriées pour phoneNumber et password
-
-            val call = apiService.otp("Bearer ${token.toString()}",otpRequestModel)
-            Log.d("RetrofitCall", "token: ${token.toString()}")
-
-            call.enqueue(object : Callback<LoginResponseModel> {
-                override fun onResponse(call: Call<LoginResponseModel>, response: Response<LoginResponseModel>) {
-                    if (response.isSuccessful) {
-                        // Log success message with response code
-                        Log.d("RetrofitCall", "Response successful: ${response.code()}")
-
-                        val intent=Intent(applicationContext, ResetPwdActivity::class.java)
-                        intent.putExtra("token",response.body()?.token)
-                        startActivity(intent)
-                        finish()
-
-                    } else if (response.code()==403){
-                        Snackbar.make(
-                            findViewById(android.R.id.content),
-                            "User does not exist ",
-                            Snackbar.LENGTH_SHORT
-                        ).show()
-
-                        // Log error with response code
-                        Log.d("RetrofitCall", "Response not successful: ${response.code()}")
-                    }
-
-                    // Optionally log the raw JSON response body
-                    Log.d("RetrofitCall", "Response body: ${response.body()}")
-                }
-
-                override fun onFailure(call: Call<LoginResponseModel>, t: Throwable) {
-                    // Log error throwable
-                    Log.d("RetrofitCall", "Call failed with error", t)
-
-                    Snackbar.make(
-                        findViewById(android.R.id.content),
-                        "server error",
-                        Snackbar.LENGTH_SHORT
-                    ).show()
-                }
-            })
-
-
+            token?.let { viewModel.verifyOtp(it, otp) }
         }
+
+        viewModel.responseLiveData.observe(this) { response ->
+            // Handle success, navigate to ResetPwdActivity
+            val intent = Intent(applicationContext, ResetPwdActivity::class.java)
+            intent.putExtra("token", response.token)
+            startActivity(intent)
+            finish()
+        }
+
+        viewModel.errorMessage.observe(this) { message ->
+            // Show error message
+            Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_SHORT).show()
+        }
+
 
     }
 }
