@@ -153,7 +153,7 @@ class AddCommentDialogFragment : DialogFragment() {
     }
 
     private fun takePhoto() {
-        val photoUri = createImageUri() // Implement this method to create a Uri for the photo
+        val photoUri = createImageUri()
         imageUri = photoUri
         Log.d("AddCommentDialogFragment", "Photo Uri: $photoUri")
         takePicture.launch(photoUri)
