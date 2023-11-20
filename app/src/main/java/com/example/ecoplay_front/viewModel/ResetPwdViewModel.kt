@@ -16,7 +16,7 @@ class ResetPwdViewModel :ViewModel(){
     val errorMessage = MutableLiveData<String>()
 
     fun newPwd(token: String, newPwd: String) {
-        val apiService = UserService.create() // Adjust this as per your project
+        val apiService = UserService.create()
         val requestModel = LoginRequestModel("", newPwd)
         Log.d("RetrofitCall", "Response successful: "+requestModel)
         apiService.newPwd("Bearer $token", requestModel).enqueue(object :
