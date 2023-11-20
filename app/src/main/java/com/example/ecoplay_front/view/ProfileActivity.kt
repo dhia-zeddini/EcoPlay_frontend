@@ -2,12 +2,11 @@ package com.example.ecoplay_front.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.ecoplay_front.R
-import com.example.ecoplay_front.fragments.AchivementsFragment
+import com.example.ecoplay_front.fragments.AchievementsFragment
 import com.example.ecoplay_front.fragments.ActivityFragment
 import com.example.ecoplay_front.fragments.ProfileFragment
 
@@ -29,7 +28,7 @@ class ProfileActivity : AppCompatActivity() {
             activityNav.setTextColor(ContextCompat.getColor(this, R.color.gray))
         }
         achievementsNav.setOnClickListener{
-            changeFragment(AchivementsFragment(),"achievements")
+            changeFragment(AchievementsFragment(),"achievements")
             accountNav.setTextColor(ContextCompat.getColor(this, R.color.gray))
             achievementsNav.setTextColor(ContextCompat.getColor(this, R.color.blue))
             activityNav.setTextColor(ContextCompat.getColor(this, R.color.gray))

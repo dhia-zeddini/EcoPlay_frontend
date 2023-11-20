@@ -83,7 +83,7 @@ class ProfileFragment : Fragment() {
        viewModel.getProfile(token ?: "")
 
        viewModel.userProfile.observe(viewLifecycleOwner) { userModel ->
-           // Update UI with user profile data
+
            firstName.setText(userModel.firstName)
            lastName.setText(userModel.lastName)
            email.setText(userModel.email)
