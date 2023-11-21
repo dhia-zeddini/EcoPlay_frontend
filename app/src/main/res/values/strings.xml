@@ -7,6 +7,13 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
     <string name="ecoplay">ECOPLAY</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="facebook_app_id">1052778296039763</string>
+
+    <string name="fb_login_protocol_scheme">f640f938b10bab56f26772424146de84</string>
+    <string name="facebook_client_token">VzSiQcXRmi2kyjzcA+mYLEtbGVs=</string>
+
 
 
 </resources>
