@@ -10,6 +10,7 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
+import com.example.ecoplay_front.MainActivity
 import com.example.ecoplay_front.R
 import com.example.ecoplay_front.apiService.UserService
 import com.example.ecoplay_front.databinding.ActivityLoginBinding
@@ -60,7 +61,7 @@ class LoginActivity : AppCompatActivity() {
 
         val mSharedPreferences = getSharedPreferences(PREF_FILE, MODE_PRIVATE)
         if (mSharedPreferences.getBoolean(LOGGED,false)) {
-            startActivity(Intent(this, ProfileActivity::class.java))
+            startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
         val logging = HttpLoggingInterceptor()
