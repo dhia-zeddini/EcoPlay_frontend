@@ -28,7 +28,10 @@
         android:layout_height="50dp"
         android:layout_marginStart="55dp"
         android:layout_marginTop="36dp"
+        android:textStyle="bold"
+        android:textSize="20dp"
         android:layout_marginEnd="56dp"
+        android:textColor="@color/grey"
         android:text="Perfect for beginners or anyone looking for an easy-to-care-for plant"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
@@ -80,16 +83,18 @@
 
     <TextView
         android:id="@+id/tvNameP"
-        android:layout_width="175dp"
-        android:layout_height="55dp"
+        android:layout_width="196dp"
+        android:layout_height="0dp"
         android:layout_marginStart="30dp"
         android:layout_marginTop="28dp"
         android:layout_marginEnd="239dp"
+        android:background="@color/grey"
         android:text="The Friendly Freya"
         android:textAlignment="center"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
