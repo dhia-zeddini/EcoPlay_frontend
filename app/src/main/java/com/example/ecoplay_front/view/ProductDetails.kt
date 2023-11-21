@@ -43,7 +43,7 @@ class ProductDetails : AppCompatActivity() {
             val productId = product?._id
             if (productId != null) {
                 // Call the ViewModel function to add the product to the cart
-                viewModel.addToCart(productId, "654b7efb61e0a843c747f81d") { success ->
+                viewModel.addToCart(productId, "655d12fb3ebfe227d849215c") { success ->
                     if (success) {
                         // Product added successfully
                         Toast.makeText(applicationContext, "Product added successfully", Toast.LENGTH_SHORT).show()

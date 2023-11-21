@@ -139,7 +139,7 @@ class ViewCart : AppCompatActivity() {
 
     private fun loadCartItems() {
         val service = RetrofitInstance.retrofit.create(CartService::class.java)
-        val cartId = "654b7efb61e0a843c747f81d"
+        val cartId = "655d12fb3ebfe227d849215c"
 
         service.getProductsInCart(CartIdRequest(cartId)).enqueue(object : Callback<List<ProductModel>> {
             override fun onResponse(call: Call<List<ProductModel>>, response: Response<List<ProductModel>>) {
@@ -170,7 +170,7 @@ class ViewCart : AppCompatActivity() {
 
     ////////////////////////////// calculate sum ///////////////////
     private fun calculateCartTotal() {
-        val cartId = "654b7efb61e0a843c747f81d"
+        val cartId = "655d12fb3ebfe227d849215c"
         val service = RetrofitInstance.retrofit.create(CartService::class.java)
         val request = CalculateCartTotalRequest(cartId)
 
@@ -211,7 +211,7 @@ class ViewCart : AppCompatActivity() {
     }
 
     private fun deleteProductFromCart(productId: String) {
-        val cartId = "654b7efb61e0a843c747f81d"
+        val cartId = "655d12fb3ebfe227d849215c"
         val removeProductRequest = RemoveProductRequest(cartId = cartId, productId = productId)
         val service = RetrofitInstance.retrofit.create(CartService::class.java)
         service.deleteProductFromCart(removeProductRequest)
