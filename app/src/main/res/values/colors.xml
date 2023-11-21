@@ -5,4 +5,6 @@
     <color name="blue">#2196F3</color>
     <color name="black">#000000</color>
     <color name="gray">#A59C9C</color>
+    <color name="dialog_color1">#FDD736</color>
+    <color name="dialog_color2">#3b5796</color>
 </resources>

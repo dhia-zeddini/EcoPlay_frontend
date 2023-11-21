@@ -8,5 +8,6 @@ data class Challenge(
     val end_date: String,
     val category: String,
     val point_value: Int,
-    val media: String
+    val media: String,
+    val participants: MutableList<String> = mutableListOf()
 )
