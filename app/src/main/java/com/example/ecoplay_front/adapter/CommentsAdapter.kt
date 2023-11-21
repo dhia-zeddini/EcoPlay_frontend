@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.ecoplay_front.R
 import com.example.ecoplay_front.model.Comment
+import com.example.ecoplay_front.uttil.Constants.BASE_URL
 
 class CommentsAdapter(
     private var comments: MutableList<Comment>,
@@ -62,7 +63,7 @@ class CommentsAdapter(
             titleTextView.text = comment.title
             subtitleTextView.text = comment.description
             val imageUrl = if (!comment.image.isNullOrBlank()) {
-                "http://192.168.1.115:9001/images/challenges/${comment.image}"
+                "${BASE_URL}images/challenges/${comment.image}"
             } else {
                 null
             }

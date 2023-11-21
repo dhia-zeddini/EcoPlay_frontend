@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.ecoplay_front.R
 import com.example.ecoplay_front.model.Challenge
+import com.example.ecoplay_front.uttil.Constants.BASE_URL
 
 class ChallengeAdapter(
     private var challenges: List<Challenge>,
@@ -53,7 +54,8 @@ class ChallengeAdapter(
             titleTextView.text = challenge.title
             descriptionTextView.text = challenge.description
 
-            Glide.with(itemView.context).load(challenge.media).into(imageView)
+            val imageUrl = "${BASE_URL}images/challenges/${challenge.media}"
+            Glide.with(itemView.context).load(imageUrl).into(imageView)
         }
     }
 

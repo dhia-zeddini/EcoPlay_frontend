@@ -1,17 +1,25 @@
 package com.example.ecoplay_front.fragments
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 
 import com.example.ecoplay_front.R
 import com.example.ecoplay_front.model.Challenge
+import com.example.ecoplay_front.uttil.Constants
+import com.example.ecoplay_front.view.ActivityCommunity
+import com.example.ecoplay_front.viewModel.ChallengeViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.google.android.material.snackbar.Snackbar
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.Locale
@@ -19,22 +27,50 @@ import java.util.TimeZone
 
 class ItemDetailBottomSheet : BottomSheetDialogFragment() {
 
+    private lateinit var viewModel: ChallengeViewModel
 
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel = ViewModelProvider(this).get(ChallengeViewModel::class.java)
+    }
+
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.bottom_modal, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+        val joinChallengeButton: Button = view.findViewById(R.id.bottom_sheet_actionButton)
+
+
+        joinChallengeButton.setOnClickListener {
+            val challengeId = arguments?.getString("challengeId")
+            challengeId?.let { id ->
+                viewModel.joinChallenge(id)
+            }
+        }
+
+        // Observing the ViewModel for changes
+        viewModel.getErrorMessage().observe(viewLifecycleOwner) { errorMessage ->
+            if (errorMessage.isNotEmpty()) {
+                Snackbar.make(view, errorMessage, Snackbar.LENGTH_LONG).show()
+                if (errorMessage == "You are already in the challenge") {
+                    startCommunityActivity()
+                }
+            }
+        }
+
+
         arguments?.let { bundle ->
             val title = bundle.getString("title")
             val description = bundle.getString("description")
-            val imageUrl = bundle.getString("imageUrl")
+            val challengeMedia = bundle.getString("media")
+            Log.d("ImageLoadDebug", "Media path: $challengeMedia")
             val startDateString = bundle.getString("startDate")
             val endDateString = bundle.getString("endDate")
 
@@ -67,11 +103,20 @@ class ItemDetailBottomSheet : BottomSheetDialogFragment() {
                 e.printStackTrace()
             }
 
-            // 7adher taswyra bel glide
+
+            val imageUrl = "${Constants.BASE_URL}images/challenges/${challengeMedia}"
             Glide.with(this)
                 .load(imageUrl)
                 .into(view.findViewById<ImageView>(R.id.bottom_sheet_imageView))
+
         }
+    }
+
+    private fun startCommunityActivity() {
+        val challengeId = arguments?.getString("challengeId") ?: return
+        val intent = Intent(requireContext(), ActivityCommunity::class.java)
+        intent.putExtra("challengeId", challengeId)
+        startActivity(intent)
     }
 
 
@@ -81,10 +126,11 @@ class ItemDetailBottomSheet : BottomSheetDialogFragment() {
             val args = Bundle().apply {
                 putString("title", challenge.title)
                 putString("description", challenge.description)
-                putString("imageUrl", challenge.media)
+                putString("media", challenge.media)
                 putString("startDate", challenge.start_date)
                 putString("endDate", challenge.end_date)
                 putInt("point_value", challenge.point_value)
+                putString("challengeId", challenge._id) // Add challenge ID here
             }
             fragment.arguments = args
             return fragment

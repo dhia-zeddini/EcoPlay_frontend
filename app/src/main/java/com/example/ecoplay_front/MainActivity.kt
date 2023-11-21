@@ -76,12 +76,7 @@ class MainActivity : AppCompatActivity(), ChallengeAdapter.OnItemClickListener {
     }
 
     override fun onItemClick(challenge: Challenge) {
-        viewModel.joinChallenge(challenge._id)
-        ItemDetailBottomSheet.newInstance(challenge).show(supportFragmentManager, "itemDetail")
-
-        Intent(this, ActivityCommunity::class.java).also { intent ->
-            intent.putExtra("challengeId", challenge._id)
-            startActivity(intent)
-        }
+        val bottomSheet = ItemDetailBottomSheet.newInstance(challenge)
+        bottomSheet.show(supportFragmentManager, "itemDetail")
     }
 }

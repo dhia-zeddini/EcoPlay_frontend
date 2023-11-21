@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/white"
     android:orientation="vertical"
     android:padding="16dp"
     >
@@ -9,7 +10,8 @@
     <ImageView
         android:id="@+id/bottom_sheet_imageView"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="330dp"
+
         android:scaleType="centerCrop"
         />
 
@@ -18,7 +20,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:textColor="#000"
+        android:textAlignment="center"
+        android:textColor="#00D8AF"
         android:textSize="24sp"
         android:textStyle="bold"
         android:text="Challenge Title" />
@@ -27,6 +30,7 @@
         android:id="@+id/bottom_sheet_descriptionTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="#000"
         android:layout_marginTop="4dp"
         android:textSize="16sp"
         android:text="Challenge Description" />
@@ -35,6 +39,7 @@
     <TextView
         android:id="@+id/bottom_sheet_pointValueTextView"
         android:layout_width="match_parent"
+        android:textStyle="bold"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Points: 88"
@@ -46,36 +51,71 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:orientation="horizontal"
         android:layout_marginTop="4dp">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="0dp"
+            android:textStyle="bold"
+            android:textAlignment="textEnd"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="From :" />
 
         <!-- Start Date -->
         <TextView
             android:id="@+id/bottom_sheet_startDateTextView"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
+            android:textAlignment="center"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textSize="16sp"
             android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="0dp"
+            android:textStyle="bold"
+
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="To:" />
 
         <!-- End Date -->
         <TextView
             android:id="@+id/bottom_sheet_endDateTextView"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textSize="16sp"
+            android:textAlignment="textStart"
             android:textColor="@android:color/black" />
+
+
+
+
     </LinearLayout>
 
 
-    <!-- Action Button (e.g., Join Challenge) -->
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/bottom_sheet_actionButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#44F1A6"
         android:layout_marginTop="16dp"
         android:text="Join Challenge"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:padding="12dp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:elevation="4dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="16dp"
         />
+
 
 </LinearLayout>
