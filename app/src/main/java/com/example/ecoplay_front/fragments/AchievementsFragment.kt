@@ -33,6 +33,9 @@ class AchievementsFragment : Fragment() {
         var levelHeader: TextView =view.findViewById(R.id.levelHeader)
         var levelSecondIcon: TextView =view.findViewById(R.id.levelSecondIcon)
         var tvPoints: TextView =view.findViewById(R.id.tvPoints)
+        var tvNbrGold: TextView =view.findViewById(R.id.tvNbrGold)
+        var tvNbrSilver: TextView =view.findViewById(R.id.tvNbrSilver)
+        var tvNbrBronze: TextView =view.findViewById(R.id.tvNbrBronze)
         var pointsIndicator: TextView =view.findViewById(R.id.pointsIndicator)
         var nextLevelSecondIcon: TextView =view.findViewById(R.id.nextLevelSecondIcon)
 
@@ -50,6 +53,9 @@ class AchievementsFragment : Fragment() {
             levelHeader.text = "Level ${userModel.level}"
             pointsIndicator.text = "${userModel.score} Points to next level"
             progressBar.progress = userModel.score
+            tvNbrGold.text= userModel.goldMedal.toString()
+            tvNbrSilver.text=userModel.silverMedal.toString()
+            tvNbrBronze.text=userModel.bronzeMedal.toString()
         }
 
 
