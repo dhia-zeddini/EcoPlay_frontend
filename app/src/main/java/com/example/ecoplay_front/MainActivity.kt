@@ -75,13 +75,20 @@ class MainActivity : AppCompatActivity(), ChallengeAdapter.OnItemClickListener {
         textView.text = spannableString
     }
 
-    override fun onItemClick(challenge: Challenge) {
-        viewModel.joinChallenge(challenge._id)
-        ItemDetailBottomSheet.newInstance(challenge).show(supportFragmentManager, "itemDetail")
+//    override fun onItemClick(challenge: Challenge) {
+//        ItemDetailBottomSheet.newInstance(challenge).show(supportFragmentManager, "itemDetail")
+//
+//
+//        viewModel.joinChallenge(challenge._id)
+//        Intent(this, ActivityCommunity::class.java).also { intent ->
+//            intent.putExtra("challengeId", challenge._id)
+//            startActivity(intent)
+//        }
+//    }
 
-        Intent(this, ActivityCommunity::class.java).also { intent ->
-            intent.putExtra("challengeId", challenge._id)
-            startActivity(intent)
-        }
+    override fun onItemClick(challenge: Challenge) {
+        val bottomSheet = ItemDetailBottomSheet.newInstance(challenge)
+        bottomSheet.show(supportFragmentManager, "itemDetail")
     }
+
 }

@@ -62,7 +62,7 @@ class CommentsAdapter(
             titleTextView.text = comment.title
             subtitleTextView.text = comment.description
             val imageUrl = if (!comment.image.isNullOrBlank()) {
-                "http://192.168.1.115:9001/images/challenges/${comment.image}"
+                "https://ecoplay-api.onrender.com/images/challenges/${comment.image}"
             } else {
                 null
             }

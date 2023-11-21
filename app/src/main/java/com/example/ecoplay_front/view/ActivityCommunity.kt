@@ -66,7 +66,7 @@ class ActivityCommunity : AppCompatActivity(), CommentsAdapter.OnItemClickListen
         challengeId?.let { fetchComments(it) }
 
         val retrofit = Retrofit.Builder()
-            .baseUrl("http://192.168.1.115:9001/")
+            .baseUrl("https://ecoplay-api.onrender.com/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "836430637480",
+    "project_id": "ecoplay-front",
+    "storage_bucket": "ecoplay-front.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:836430637480:android:ff3f26541555c21dc3d59d",
+        "android_client_info": {
+          "package_name": "com.example.ecoplay_front"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBm71CZUgc0UWiUYNogZAJ56ODsKL1U6IM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -53,7 +53,9 @@ class ChallengeAdapter(
             titleTextView.text = challenge.title
             descriptionTextView.text = challenge.description
 
-            Glide.with(itemView.context).load(challenge.media).into(imageView)
+            val imageUrl = "https://ecoplay-api.onrender.com/images/challenges/${challenge.media}"
+            Glide.with(itemView.context).load(imageUrl).into(imageView)
+
         }
     }
 
