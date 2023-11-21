@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/details"
     android:layout_gravity="center"
-    tools:context=".view.ProductDetails">
+    tools:context="com.example.ecoplay_front.view.ProductDetails">
 
     <ImageView
         android:id="@+id/imageView"
