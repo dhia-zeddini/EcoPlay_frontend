@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- The border color -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#000000" /> <!-- Black color for the border -->
+            <corners android:radius="8dp" /> <!-- Match this radius with the CardView's corner radius -->
+        </shape>
+    </item>
+    <!-- The main color of the CardView -->
+    <item android:top="2dp" android:right="2dp" android:left="2dp" android:bottom="2dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#000000" /> <!-- Or any color you want for the card -->
+            <corners android:radius="8dp" />
+        </shape>
+    </item>
+</layer-list>

@@ -77,7 +77,7 @@ dependencies {
 
 
 
-
+    implementation ("com.stripe:stripe-android:20.34.4")
 
 
 

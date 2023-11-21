@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context="com.example.ecoplay_front.view.ViewCart">
+
+    <!-- Progress Bar -->
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true" />
+
+
+    <!-- Cart TextView -->
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="203dp"
+        android:layout_height="59dp"
+        android:layout_below="@+id/progressBar"
+        android:layout_centerHorizontal="true"
+        android:text="Cart"
+        android:textAlignment="center"
+        android:textSize="34sp" />
+
+    <!-- RecyclerView -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/challenge_recycler_view"
+        android:layout_width="382dp"
+        android:layout_height="315dp"
+        android:layout_below="@+id/textView8"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="11dp"
+        android:layout_marginBottom="16dp"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:padding="8dp"
+        android:scrollbars="vertical" />
+
+    <!-- Cart Image -->
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="match_parent"
+        android:layout_height="244dp"
+        android:layout_below="@+id/challenge_recycler_view"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="38dp"
+        app:srcCompat="@drawable/cart_rectangle" />
+
+    <!-- LinearLayout for Payment -->
+    <!-- Total Amount TextView -->
+
+
+    <TextView
+        android:id="@+id/totalamount"
+        android:layout_width="match_parent"
+        android:layout_height="39dp"
+        android:layout_below="@id/challenge_recycler_view"
+        android:layout_marginTop="101dp"
+        android:text="TextView"
+        android:textAlignment="center"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/challenge_recycler_view"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="197dp"
+        android:background="@drawable/panier_btn_shape"
+        android:backgroundTint="#99686868"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="145dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Make Payment"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/imageViewpay"
+            android:layout_width="128dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="50dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            app:srcCompat="@drawable/cart_pay" />
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>
