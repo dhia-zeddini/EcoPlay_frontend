@@ -43,6 +43,9 @@ interface UserService  {
     @POST("forgetPwd")
     fun forgetPwd(@Body phone: LoginRequestModel): Call<LoginResponseModel>
 
+    @POST("forgetPwdSms")
+    fun forgetPwdSms(@Body phone: LoginRequestModel): Call<LoginResponseModel>
+
     @POST("otp")
     fun otp(@Header("token") token: String, @Body code: LoginRequestModel): Call<LoginResponseModel>
 

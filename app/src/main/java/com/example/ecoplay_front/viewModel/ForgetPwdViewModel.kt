@@ -35,4 +35,25 @@ class ForgetPwdViewModel : ViewModel() {
             }
         })
     }
+
+    fun forgetPwdSms(email: String) {
+        val apiService = UserService.create() // Adjust this as per your project
+        val requestModel = LoginRequestModel(email, "")
+
+        apiService.forgetPwdSms(requestModel).enqueue(object : Callback<LoginResponseModel> {
+            override fun onResponse(call: Call<LoginResponseModel>, response: Response<LoginResponseModel>) {
+                if (response.isSuccessful) {
+                    responseLiveData.value = response.body()
+                    Log.d("RetrofitCall", "Response successful: ${response.code()}")
+
+                } else if (response.code()==404){
+                    errorMessage.value = "Error: User does not exist"
+                }
+            }
+
+            override fun onFailure(call: Call<LoginResponseModel>, t: Throwable) {
+                errorMessage.value = t.message ?: "Unknown error"
+            }
+        })
+    }
 }
