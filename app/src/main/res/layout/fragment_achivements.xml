@@ -347,6 +347,7 @@
                 android:orientation="horizontal">
 
                 <LinearLayout
+                    android:id="@+id/layoutGold"
                     android:layout_width="190dp"
                     android:layout_height="match_parent"
                     android:layout_marginStart="20dp"

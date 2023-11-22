@@ -1,11 +1,13 @@
 package com.example.ecoplay_front.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -38,6 +40,18 @@ class AchievementsFragment : Fragment() {
         var tvNbrBronze: TextView =view.findViewById(R.id.tvNbrBronze)
         var pointsIndicator: TextView =view.findViewById(R.id.pointsIndicator)
         var nextLevelSecondIcon: TextView =view.findViewById(R.id.nextLevelSecondIcon)
+        var layoutGold: LinearLayout =view.findViewById(R.id.layoutGold)
+
+        layoutGold.setOnClickListener {
+            val sendIntent: Intent = Intent().apply {
+                action = Intent.ACTION_SEND
+                putExtra(Intent.EXTRA_TEXT, "This is my text to send.")
+                type = "text/plain"
+            }
+
+            val shareIntent = Intent.createChooser(sendIntent, null)
+            startActivity(shareIntent)
+        }
 
         val mSharedPreferences = requireContext().getSharedPreferences(PREF_FILE, AppCompatActivity.MODE_PRIVATE)
         var token:String?=mSharedPreferences.getString(TOKEN,"no token")
