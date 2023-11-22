@@ -64,6 +64,10 @@ class LoginActivity : AppCompatActivity() {
             startActivity(Intent(this, CarouselMain::class.java))
             finish()
         }*/
+        if (mSharedPreferences.getBoolean(LOGGED,false)) {
+            startActivity(Intent(this, ProfileActivity::class.java))
+            finish()
+        }
         val logging = HttpLoggingInterceptor()
         logging.setLevel(HttpLoggingInterceptor.Level.BODY)
 
