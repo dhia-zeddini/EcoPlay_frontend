@@ -60,14 +60,14 @@ class LoginActivity : AppCompatActivity() {
         var goToForgetPwd:TextView=findViewById(R.id.tvForgotPassword)
 
         val mSharedPreferences = getSharedPreferences(PREF_FILE, MODE_PRIVATE)
-       /* if (mSharedPreferences.getBoolean(LOGGED,false)) {
-            startActivity(Intent(this, CarouselMain::class.java))
-            finish()
-        }*/
         if (mSharedPreferences.getBoolean(LOGGED,false)) {
-            startActivity(Intent(this, AstuceHomeActivity::class.java))
+            startActivity(Intent(this, ProfileActivity::class.java))
             finish()
         }
+       /* if (mSharedPreferences.getBoolean(LOGGED,false)) {
+            startActivity(Intent(this, ProfileActivity::class.java))
+            finish()
+        }*/
         val logging = HttpLoggingInterceptor()
         logging.setLevel(HttpLoggingInterceptor.Level.BODY)
 

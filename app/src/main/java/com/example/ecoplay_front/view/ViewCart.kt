@@ -41,7 +41,7 @@ class ViewCart : AppCompatActivity() {
     private lateinit var paymentSheet: PaymentSheet
     //// PROGRESS BAR
     private lateinit var progressBar: ProgressBar
-
+    private lateinit var token:String
 
     private val paymentSheetResultCallback = PaymentSheetResultCallback { result ->
         when (result) {
@@ -49,6 +49,7 @@ class ViewCart : AppCompatActivity() {
                 // Handle the payment success
                 Log.d("Payment", "Payment completed successfully.")
                 Toast.makeText(this, "Payment successful!", Toast.LENGTH_LONG).show()
+
             }
             is PaymentSheetResult.Canceled -> {
                 // Handle the cancellation
@@ -70,7 +71,8 @@ class ViewCart : AppCompatActivity() {
         setContentView(R.layout.activity_view_cart)
 
 
-
+        val mSharedPreferences = applicationContext.getSharedPreferences(PREF_FILE, AppCompatActivity.MODE_PRIVATE)
+         token= mSharedPreferences.getString(TOKEN,"no token").toString()
         /////////////// PROGRESS BAR //////////
         progressBar = findViewById(R.id.progressBar)
         progressBar.visibility = View.VISIBLE
@@ -141,7 +143,7 @@ class ViewCart : AppCompatActivity() {
         val service = RetrofitInstance.retrofit.create(CartService::class.java)
         val cartId = "655d12fb3ebfe227d849215c"
 
-        service.getProductsInCart(CartIdRequest(cartId)).enqueue(object : Callback<List<ProductModel>> {
+        service.getProductsInCart("Bearer $token",CartIdRequest(cartId)).enqueue(object : Callback<List<ProductModel>> {
             override fun onResponse(call: Call<List<ProductModel>>, response: Response<List<ProductModel>>) {
                 if (response.isSuccessful) {
                     response.body()?.let { products ->
@@ -174,7 +176,7 @@ class ViewCart : AppCompatActivity() {
         val service = RetrofitInstance.retrofit.create(CartService::class.java)
         val request = CalculateCartTotalRequest(cartId)
 
-        service.calculateCartTotal(request).enqueue(object : Callback<CalculateCartTotalResponse> {
+        service.calculateCartTotal("Bearer $token",request).enqueue(object : Callback<CalculateCartTotalResponse> {
             override fun onResponse(
                 call: Call<CalculateCartTotalResponse>,
                 response: Response<CalculateCartTotalResponse>
@@ -214,7 +216,7 @@ class ViewCart : AppCompatActivity() {
         val cartId = "655d12fb3ebfe227d849215c"
         val removeProductRequest = RemoveProductRequest(cartId = cartId, productId = productId)
         val service = RetrofitInstance.retrofit.create(CartService::class.java)
-        service.deleteProductFromCart(removeProductRequest)
+        service.deleteProductFromCart("Bearer $token",removeProductRequest)
             .enqueue(object : Callback<ResponseMessage> {
                 override fun onResponse(
                     call: Call<ResponseMessage>,

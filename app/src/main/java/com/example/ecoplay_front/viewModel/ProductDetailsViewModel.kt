@@ -9,14 +9,14 @@ import retrofit2.Response
 
 class ProductDetailsViewModel : ViewModel() {
     // Create a function to add a product to the cart
-    fun addToCart(productId: String, cartId: String, callback: (Boolean) -> Unit) {
+    fun addToCart(token:String,productId: String, cartId: String, callback: (Boolean) -> Unit) {
         val service = RetrofitInstance.retrofit.create(CartService::class.java)
 
         // Create the request body
         val request = AddToCartRequest(cartId, productId)
 
         // Enqueue the call to asynchronously execute the PUT request
-        service.addToCart(request).enqueue(object : Callback<AddToCartResponse> {
+        service.addToCart("Bearer $token",request).enqueue(object : Callback<AddToCartResponse> {
             override fun onResponse(
                 call: Call<AddToCartResponse>,
                 response: Response<AddToCartResponse>

@@ -37,19 +37,22 @@ class ProductDetails : AppCompatActivity() {
         Glide.with(this)
             .load("${Constants.BASE_URL}images/product/${product?.image}")
             .into(imageView)
-
+        val mSharedPreferences = application.getSharedPreferences(PREF_FILE, AppCompatActivity.MODE_PRIVATE)
+        var token:String?=mSharedPreferences.getString(TOKEN,"no token")
         buttonSubmit = findViewById(R.id.textViewnav)
         buttonSubmit.setOnClickListener {
             val productId = product?._id
             if (productId != null) {
                 // Call the ViewModel function to add the product to the cart
-                viewModel.addToCart(productId, "655d12fb3ebfe227d849215c") { success ->
-                    if (success) {
-                        // Product added successfully
-                        Toast.makeText(applicationContext, "Product added successfully", Toast.LENGTH_SHORT).show()
-                    } else {
-                        // Error occurred while adding the product
-                        Toast.makeText(applicationContext, " product all ready added to cart", Toast.LENGTH_SHORT).show()
+                token?.let { it1 ->
+                    viewModel.addToCart(it1,productId, "655d12fb3ebfe227d849215c") { success ->
+                        if (success) {
+                            // Product added successfully
+                            Toast.makeText(applicationContext, "Product added successfully", Toast.LENGTH_SHORT).show()
+                        } else {
+                            // Error occurred while adding the product
+                            Toast.makeText(applicationContext, " product all ready added to cart", Toast.LENGTH_SHORT).show()
+                        }
                     }
                 }
             }

@@ -14,6 +14,7 @@ data class UserModel(
     val goldMedal: Int,
     val silverMedal: Int,
     val bronzeMedal: Int,
+    val owned: MutableList<String> = mutableListOf(),
     val etatDelete: Boolean,
     val createdAt: String,
     val updatedAt: String,
