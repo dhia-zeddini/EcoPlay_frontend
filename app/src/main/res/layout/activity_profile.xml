@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/imageView7"
+            android:id="@+id/userImage"
             android:layout_width="84dp"
             android:layout_height="76dp"
             android:layout_gravity="center"

@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/tuto
 @rem
 @rem Copyright 2015 the original author or authors.
 @rem
@@ -88,6 +91,7 @@ exit /b 1
 if "%OS%"=="Windows_NT" endlocal
 
 :omega
+<<<<<<< HEAD
 =======
 @rem
 @rem Copyright 2015 the original author or authors.
@@ -179,3 +183,5 @@ if "%OS%"=="Windows_NT" endlocal
 
 :omega
 >>>>>>> origin/store
+=======
+>>>>>>> origin/tuto

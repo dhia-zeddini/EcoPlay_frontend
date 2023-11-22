@@ -13,6 +13,10 @@ dependencyResolutionManagement {
     }
 }
 
+<<<<<<< HEAD
 rootProject.name = "EcoPlay_frontend"
+=======
+rootProject.name = "ecoplay_front"
+>>>>>>> origin/tuto
 include(":app")
  

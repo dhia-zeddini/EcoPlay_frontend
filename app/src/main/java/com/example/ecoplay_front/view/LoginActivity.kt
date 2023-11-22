@@ -65,7 +65,7 @@ class LoginActivity : AppCompatActivity() {
             finish()
         }*/
         if (mSharedPreferences.getBoolean(LOGGED,false)) {
-            startActivity(Intent(this, ProfileActivity::class.java))
+            startActivity(Intent(this, AstuceHomeActivity::class.java))
             finish()
         }
         val logging = HttpLoggingInterceptor()

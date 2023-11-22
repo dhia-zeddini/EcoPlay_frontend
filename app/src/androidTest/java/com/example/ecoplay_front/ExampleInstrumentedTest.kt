@@ -20,9 +20,13 @@ class ExampleInstrumentedTest {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
 <<<<<<< HEAD
+<<<<<<< HEAD
         assertEquals("com.example.ecoplay_front", appContext.packageName)
 =======
         assertEquals("com.example.ecoplay_frontend", appContext.packageName)
 >>>>>>> origin/store
+=======
+        assertEquals("com.example.ecoplay_front", appContext.packageName)
+>>>>>>> origin/tuto
     }
 }

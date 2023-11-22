@@ -80,3 +80,4 @@ class MainActivity : AppCompatActivity(), ChallengeAdapter.OnItemClickListener {
         bottomSheet.show(supportFragmentManager, "itemDetail")
     }
 }
+

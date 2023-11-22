@@ -22,7 +22,7 @@ class ProfileViewModel : ViewModel() {
             override fun onResponse(call: Call<UserModel>, response: Response<UserModel>) {
                 if (response.isSuccessful) {
                     userProfile.value = response.body()
-                    Log.d("RetrofitCall", "Profile Response successful: ${response.code()}")
+                    Log.d("RetrofitCall", "Profile Response successful: ${response.body()}")
 
                 } else if (response.code()==404){
                     errorMessage.value = "Error: User does not exist"

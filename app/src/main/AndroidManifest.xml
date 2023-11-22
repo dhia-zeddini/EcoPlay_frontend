@@ -86,7 +86,21 @@
             android:name=".view.CarouselMain"
             android:exported="true">
         </activity>
+        <activity
+            android:name=".view.AstuceDetailsActivity"
+            android:exported="false" />
 
+        <activity
+            android:name=".view.AstuceActivity"
+            android:exported="true" />
+
+
+        <!-- Update the launcher activity to AstuceHomeActivity -->
+        <activity
+            android:name=".view.AstuceHomeActivity"
+            android:exported="true">
+
+        </activity>
         <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
         <meta-data android:name="com.facebook.sdk.ClientToken" android:value="@string/facebook_client_token"/>
 
