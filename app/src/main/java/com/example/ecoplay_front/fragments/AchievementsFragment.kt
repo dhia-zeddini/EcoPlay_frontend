@@ -73,26 +73,26 @@
             viewModel.getProfile(token ?: "")
             productViewModel.fetchProductsFromBackend()
 
-            setupObservers()
+           // setupObservers()
 
 
 
-            /*viewModel.userProfile.observe(viewLifecycleOwner) { userModel ->
+            viewModel.userProfile.observe(viewLifecycleOwner) { userModel ->
                 levelMainIcon.text = userModel.level.toString()
                 levelSecondIcon.text = userModel.level.toString()
-                nextLevelSecondIcon.text = (userModel.level+1).toString()
+                nextLevelSecondIcon.text = (userModel.level + 1).toString()
                 tvPoints.text = userModel.score.toString()
                 levelHeader.text = "Level ${userModel.level}"
                 pointsIndicator.text = "${userModel.score} Points to next level"
                 progressBar.progress = userModel.score
-                tvNbrGold.text= userModel.goldMedal.toString()
-                tvNbrSilver.text=userModel.silverMedal.toString()
-                tvNbrBronze.text=userModel.bronzeMedal.toString()
+                tvNbrGold.text = userModel.goldMedal.toString()
+                tvNbrSilver.text = userModel.silverMedal.toString()
+                tvNbrBronze.text = userModel.bronzeMedal.toString()
 
-                owned = userModel.owned.toMutableList() */
+                // owned = userModel.owned.toMutableList()
 
 
-
+            }
 
                 /* for (prodId in owned){
                      Log.d("avatar","owned: ${prodId}")
@@ -137,7 +137,7 @@
             return view
         }
 
-        private fun setupObservers() {
+       /* private fun setupObservers() {
             // Observe userProfile changes
             viewModel.userProfile.observe(viewLifecycleOwner) { userModel ->
 
@@ -164,7 +164,7 @@
             }
 
             // Update RecyclerView Adapter
-        }
+        }*/
 
 
 

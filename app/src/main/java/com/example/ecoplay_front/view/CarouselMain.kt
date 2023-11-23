@@ -1,6 +1,7 @@
 package com.example.ecoplay_front.view
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -44,6 +45,7 @@ class CarouselMain : AppCompatActivity() {
     private fun observeProducts() {
         viewModel.products.observe(this, Observer { products ->
             carouselAdapter.updateData(products)
+            Log.d("background fetch","mrigl ${products}")
         })
     }
 }

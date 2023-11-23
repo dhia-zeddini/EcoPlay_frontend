@@ -71,7 +71,7 @@ class HomePageActivity : AppCompatActivity() {
     }
 
     private fun startStoreActivity() {
-        val intent = Intent(this, ViewCart::class.java)
+        val intent = Intent(this, CarouselMain::class.java)
         startActivity(intent)
     }
 

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@drawable/background"
     tools:context="com.example.ecoplay_front.view.ViewCart">
 
@@ -31,27 +31,27 @@
         android:textSize="34sp" />
 
     <!-- RecyclerView -->
+
+    <!-- Cart Image -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/challenge_recycler_view"
         android:layout_width="382dp"
         android:layout_height="315dp"
         android:layout_below="@+id/textView8"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="11dp"
+        android:layout_marginTop="12dp"
         android:layout_marginBottom="16dp"
         android:clipChildren="false"
         android:clipToPadding="false"
         android:padding="8dp"
         android:scrollbars="vertical" />
 
-    <!-- Cart Image -->
     <ImageView
         android:id="@+id/imageView4"
         android:layout_width="match_parent"
-        android:layout_height="244dp"
+        android:layout_height="222dp"
         android:layout_below="@+id/challenge_recycler_view"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="38dp"
+        android:layout_marginTop="110dp"
         app:srcCompat="@drawable/cart_rectangle" />
 
     <!-- LinearLayout for Payment -->
@@ -63,7 +63,7 @@
         android:layout_width="match_parent"
         android:layout_height="39dp"
         android:layout_below="@id/challenge_recycler_view"
-        android:layout_marginTop="101dp"
+        android:layout_marginTop="161dp"
         android:text="TextView"
         android:textAlignment="center"
         android:textSize="20dp"
@@ -75,7 +75,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/challenge_recycler_view"
         android:layout_centerInParent="true"
-        android:layout_marginTop="197dp"
+        android:layout_marginTop="222dp"
         android:background="@drawable/panier_btn_shape"
         android:backgroundTint="#99686868"
         android:orientation="horizontal">
@@ -102,7 +102,6 @@
             app:srcCompat="@drawable/cart_pay" />
 
     </LinearLayout>
-
 
 
 </RelativeLayout>
