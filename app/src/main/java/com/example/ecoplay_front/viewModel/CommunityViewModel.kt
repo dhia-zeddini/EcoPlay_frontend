@@ -45,34 +45,5 @@ class CommunityViewModel(private val challengeApi: ChallengeApi) : ViewModel() {
         })
     }
 
-    fun postComment(
-        challengeId: String,
-        userId: String,
-        title: String,
-        description: String,
-        imageFile: File?,
-        onSuccess: (Boolean) -> Unit
-    ) {
-        isLoading.value = true
-        communityRepository.postComment(
-            challengeId,
-            userId,
-            title,
-            description,
-            imageFile,
-            onSuccess = {
-                isLoading.value = false
-                if (it) {
-                    fetchComments(challengeId) // Refresh comments after posting
-                } else {
-                    message.value = "Error posting comment"
-                }
-                onSuccess(it)
-            },
-            onError = { error ->
-                isLoading.value = false
-                message.value = error
-                onSuccess(false)
-            })
-    }
+
 }

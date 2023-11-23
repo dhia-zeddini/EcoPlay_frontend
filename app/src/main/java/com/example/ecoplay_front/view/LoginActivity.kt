@@ -12,10 +12,7 @@ import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import com.example.ecoplay_front.MainActivity
 import com.example.ecoplay_front.R
-import com.example.ecoplay_front.apiService.UserService
 import com.example.ecoplay_front.databinding.ActivityLoginBinding
-import com.example.ecoplay_front.model.LoginResponseModel
-import com.example.ecoplay_front.model.LoginRequestModel
 import com.example.ecoplay_front.viewModel.LoginViewModel
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
@@ -25,11 +22,6 @@ import com.facebook.login.LoginResult
 import com.facebook.login.widget.LoginButton
 import com.google.android.material.snackbar.Snackbar
 import okhttp3.OkHttpClient
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import okhttp3.logging.HttpLoggingInterceptor
 import java.util.Arrays
 
@@ -61,7 +53,7 @@ class LoginActivity : AppCompatActivity() {
 
         val mSharedPreferences = getSharedPreferences(PREF_FILE, MODE_PRIVATE)
         if (mSharedPreferences.getBoolean(LOGGED,false)) {
-            startActivity(Intent(this, ProfileActivity::class.java))
+            startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
        /* if (mSharedPreferences.getBoolean(LOGGED,false)) {

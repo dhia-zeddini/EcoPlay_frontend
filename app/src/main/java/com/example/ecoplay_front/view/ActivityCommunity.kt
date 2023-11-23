@@ -66,7 +66,7 @@ class ActivityCommunity : AppCompatActivity(), CommentsAdapter.OnItemClickListen
         challengeId?.let { fetchComments(it) }
 
         val retrofit = Retrofit.Builder()
-            .baseUrl("http://192.168.1.115:9001/")
+            .baseUrl("http://192.168.1.116:9001/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
@@ -156,9 +156,10 @@ class ActivityCommunity : AppCompatActivity(), CommentsAdapter.OnItemClickListen
                 MultipartBody.Part.createFormData("image", tempFile.name, requestFile)
             }
         }
-
+        val mSharedPreferences = application.getSharedPreferences(PREF_FILE, AppCompatActivity.MODE_PRIVATE)
+        var token:String?=mSharedPreferences.getString(TOKEN,"no token")
         challengeId?.let {
-            challengeApi.postComment(it, userIdBody, titleBody, descriptionBody, imagePart).enqueue(object : Callback<ResponseBody> {
+            challengeApi.postComment("Bearer $token",it,userIdBody, titleBody, descriptionBody, imagePart).enqueue(object : Callback<ResponseBody> {
                 override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                     if (response.isSuccessful) {
                         progressBar.visibility = View.GONE

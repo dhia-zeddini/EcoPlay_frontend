@@ -35,8 +35,8 @@ class ChallengeViewModel : ViewModel() {
         })
     }
 
-    fun joinChallenge(challengeId: String) {
-        repository.joinChallenge(challengeId, object : Callback<ResponseBody> {
+    fun joinChallenge(token:String,challengeId: String) {
+        repository.joinChallenge(token,challengeId, object : Callback<ResponseBody> {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                 if (response.isSuccessful) {
                     // Handle the successful joining here if needed

@@ -15,9 +15,8 @@ class ChallengeRepository {
         service.listChallenges().enqueue(callback)
     }
 
-    fun joinChallenge(challengeId: String, callback: Callback<ResponseBody>) {
-        val userIdBody = mapOf("userId" to "507f1f77bcf86cd799439011")
-        service.joinChallenge(challengeId, userIdBody).enqueue(callback)
+    fun joinChallenge(token:String,challengeId: String, callback: Callback<ResponseBody>) {
+        service.joinChallenge(token,challengeId).enqueue(callback)
     }
 
 

@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 
@@ -17,6 +18,8 @@ import com.example.ecoplay_front.R
 import com.example.ecoplay_front.model.Challenge
 import com.example.ecoplay_front.uttil.Constants
 import com.example.ecoplay_front.view.ActivityCommunity
+import com.example.ecoplay_front.view.PREF_FILE
+import com.example.ecoplay_front.view.TOKEN
 import com.example.ecoplay_front.viewModel.ChallengeViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.snackbar.Snackbar
@@ -48,10 +51,12 @@ class ItemDetailBottomSheet : BottomSheetDialogFragment() {
         val joinChallengeButton: Button = view.findViewById(R.id.bottom_sheet_actionButton)
 
 
+        val mSharedPreferences = requireContext().getSharedPreferences(PREF_FILE, AppCompatActivity.MODE_PRIVATE)
+        var token:String?=mSharedPreferences.getString(TOKEN,"no token")
         joinChallengeButton.setOnClickListener {
             val challengeId = arguments?.getString("challengeId")
             challengeId?.let { id ->
-                viewModel.joinChallenge(id)
+                viewModel.joinChallenge("Bearer $token",id)
             }
         }
 

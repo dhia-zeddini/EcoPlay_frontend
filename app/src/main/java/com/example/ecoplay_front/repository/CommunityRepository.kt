@@ -1,3 +1,4 @@
+import android.util.Log
 import com.example.ecoplay_front.apiService.ChallengeApi
 import com.example.ecoplay_front.model.Comment
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -27,26 +28,4 @@ class CommunityRepository(private val challengeApi: ChallengeApi) {
         })
     }
 
-    fun postComment(challengeId: String, userId: String, title: String, description: String, imageFile: File?, onSuccess: (Boolean) -> Unit, onError: (String) -> Unit) {
-        // Convert title, description, and userId to RequestBody
-        val titleBody = RequestBody.create("text/plain".toMediaTypeOrNull(), title)
-        val descriptionBody = RequestBody.create("text/plain".toMediaTypeOrNull(), description)
-        val userIdBody = RequestBody.create("text/plain".toMediaTypeOrNull(), userId)
-
-        // Create MultipartBody.Part using the File
-        val imagePart: MultipartBody.Part? = imageFile?.let { file ->
-            val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)
-            MultipartBody.Part.createFormData("image", file.name, requestFile)
-        }
-
-        challengeApi.postComment(challengeId, userIdBody, titleBody, descriptionBody, imagePart).enqueue(object : Callback<ResponseBody> {
-            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
-                onSuccess(response.isSuccessful)
-            }
-
-            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                onError("Failure: ${t.message}")
-            }
-        })
-    }
 }

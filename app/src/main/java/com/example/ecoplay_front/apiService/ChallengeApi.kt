@@ -8,6 +8,7 @@ import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.Part
@@ -18,7 +19,7 @@ interface ChallengeApi {
     fun listChallenges(): Call<List<Challenge>>
 
     @POST("api/challenges/{id}/join")
-    fun joinChallenge(@Path("id") challengeId: String, @Body userId: Map<String, String>): Call<ResponseBody>
+    fun joinChallenge(@Header("token") token: String?,@Path("id") challengeId: String): Call<ResponseBody>
 
 
     @GET("api/challenges/comments/{id}")
@@ -27,6 +28,7 @@ interface ChallengeApi {
     @Multipart
     @POST("api/challenges/comments/{id}")
     fun postComment(
+        @Header("token") token: String,
         @Path("id") challengeId: String,
         @Part("userId") userId: RequestBody,
         @Part("title") title: RequestBody,
