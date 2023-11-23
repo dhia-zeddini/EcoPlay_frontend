@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.style.ForegroundColorSpan
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -16,6 +17,7 @@ import com.example.ecoplay_front.adapter.ChallengeAdapter
 import com.example.ecoplay_front.fragments.ItemDetailBottomSheet
 import com.example.ecoplay_front.model.Challenge
 import com.example.ecoplay_front.view.ActivityCommunity
+import com.example.ecoplay_front.view.HomePageActivity
 import com.example.ecoplay_front.viewModel.ChallengeViewModel
 
 class MainActivity : AppCompatActivity(), ChallengeAdapter.OnItemClickListener {
@@ -27,6 +29,13 @@ class MainActivity : AppCompatActivity(), ChallengeAdapter.OnItemClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        val backhImageView: ImageView = findViewById(R.id.backh)
+
+        backhImageView.setOnClickListener {
+            // Add your intent code here to start the desired activity
+            val intent = Intent(this, HomePageActivity::class.java)
+            startActivity(intent)
+        }
 
         setupRecyclerView()
         setupViewModel()

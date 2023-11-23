@@ -1,5 +1,6 @@
 package com.example.ecoplay_front.view
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -69,7 +70,13 @@ class ViewCart : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view_cart)
+        val backhImageView: ImageView = findViewById(R.id.backh)
 
+        backhImageView.setOnClickListener {
+            // Add your intent code here to start the desired activity
+            val intent = Intent(this, HomePageActivity::class.java)
+            startActivity(intent)
+        }
 
         val mSharedPreferences = applicationContext.getSharedPreferences(PREF_FILE, AppCompatActivity.MODE_PRIVATE)
          token= mSharedPreferences.getString(TOKEN,"no token").toString()

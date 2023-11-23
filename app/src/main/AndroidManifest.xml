@@ -1,20 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.USE_BIOMETRIC" />
+
     <uses-feature android:name="android.hardware.camera.autofocus" />
+
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
-    <uses-permission android:name="com.google.android.gms.permission.AD_ID" tools:node="remove"/>
+    <uses-permission
+        android:name="com.google.android.gms.permission.AD_ID"
+        tools:node="remove" />
 
     <application
-
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -25,6 +29,25 @@
         android:theme="@style/Theme.EcoPlay_Front"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <activity
+            android:name=".Splash"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+        <activity
+            android:name=".view.HomePageActivity"
+            android:exported="true">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".view.ProfileActivity"
             android:exported="false" />
@@ -45,11 +68,7 @@
             android:exported="true"
             android:label="@string/title_activity_login"
             android:theme="@style/Theme.EcoPlay_Front">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".fragments.ItemDetailBottomSheet"
@@ -57,9 +76,9 @@
         <activity
             android:name=".fragments.AddCommentDialogFragment"
             android:exported="false" />
-        <activity android:name=".view.RateActivity"
-            android:theme="@style/Theme.AppCompat.Dialog"/>
-
+        <activity
+            android:name=".view.RateActivity"
+            android:theme="@style/Theme.AppCompat.Dialog" />
         <activity
             android:name=".adapter.CommentsAdapter"
             android:exported="false" />
@@ -74,35 +93,34 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true"></activity>
-
+            android:exported="true" />
         <activity
             android:name=".view.ProductDetails"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".view.ViewCart"
             android:exported="true" />
         <activity
             android:name=".view.CarouselMain"
-            android:exported="true">
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".view.AstuceDetailsActivity"
             android:exported="false" />
-
         <activity
             android:name=".view.AstuceActivity"
-            android:exported="true" />
-
-
-        <!-- Update the launcher activity to AstuceHomeActivity -->
+            android:exported="true" /> <!-- Update the launcher activity to AstuceHomeActivity -->
         <activity
             android:name=".view.AstuceHomeActivity"
-            android:exported="true">
+            android:exported="false" >
 
         </activity>
-        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
-        <meta-data android:name="com.facebook.sdk.ClientToken" android:value="@string/facebook_client_token"/>
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+        <meta-data
+            android:name="com.facebook.sdk.ClientToken"
+            android:value="@string/facebook_client_token" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -113,6 +131,10 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
+
+
+
+        <service android:name=".MusicService"/>
     </application>
 
 </manifest>

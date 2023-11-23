@@ -1,6 +1,8 @@
 package com.example.ecoplay_front.view
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -23,6 +25,13 @@ class AstuceHomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_astuce_home)
+        val backhImageView: ImageView = findViewById(R.id.backh)
+
+        backhImageView.setOnClickListener {
+            // Add your intent code here to start the desired activity
+            val intent = Intent(this, HomePageActivity::class.java)
+            startActivity(intent)
+        }
 
         setUpRecyclerView()
         observeViewModel()

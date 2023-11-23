@@ -9,18 +9,22 @@
     tools:context=".view.AstuceHomeActivity">
 
     <!-- Define ImageView first if it needs to be at the back of all other views -->
+    <ImageView
+        android:id="@+id/backh"
+        android:layout_width="wrap_content"
+        android:layout_height="63dp"
+        app:srcCompat="@drawable/backhome" />
+
+
+    <!-- RecyclerView positioned to be at the start of the ConstraintLayout -->
+
+    <!-- TextView positioned to be above the RecyclerView -->
 
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="match_parent"
         android:layout_height="220dp"
         android:src="@drawable/quiktips" />
-
-
-
-    <!-- RecyclerView positioned to be at the start of the ConstraintLayout -->
-
-    <!-- TextView positioned to be above the RecyclerView -->
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/astuce_recycler_view"

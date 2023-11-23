@@ -7,7 +7,6 @@
     tools:context=".MainActivity">
 
 
-
     <ImageView
         android:id="@+id/background_image"
         android:layout_width="match_parent"
@@ -29,8 +28,8 @@
         android:id="@+id/tree_image"
         android:layout_width="match_parent"
         android:layout_height="320sp"
-        android:layout_centerInParent="true"
         android:layout_below="@+id/title_daily_competitions"
+        android:layout_centerInParent="true"
         app:srcCompat="@drawable/preview" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -42,7 +41,15 @@
         android:clipToPadding="false"
         android:clipChildren="false"
         android:scrollbars="vertical"
-        tools:listitem="@layout/challenge_card"/>
+        tools:listitem="@layout/challenge_card">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <ImageView
+        android:id="@+id/backh"
+        android:layout_width="wrap_content"
+        android:layout_height="63dp"
+        app:srcCompat="@drawable/backhome" />
 
 </RelativeLayout>
 

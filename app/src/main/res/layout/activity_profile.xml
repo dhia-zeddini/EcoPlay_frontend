@@ -7,6 +7,13 @@
     android:background="@drawable/eco_play_background"
     tools:context=".view.ProfileActivity">
 
+    <ImageView
+        android:id="@+id/backh"
+        android:layout_width="wrap_content"
+        android:layout_height="63dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/backhome" />
     <LinearLayout
         android:id="@+id/linearLayout3"
         android:layout_width="413dp"
