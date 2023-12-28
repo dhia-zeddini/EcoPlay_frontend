@@ -11,4 +11,33 @@
     <color name="grey">#36F492</color>
 
 
+
+    <color name="colorAccent">#D81B60</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="purple_7">#E3F0FF</color>
+    <color name="_bg__stat_tile_small_ek1_color">#000000</color>
+    <color name="cardViewBgColor">#39B5C5</color>
+    <color name="background_color">#FFFFFF</color>
+    <color name="cardColor">#FFFFFF</color>
+    <color name="blue2">#32CEE3</color>
+    <color name="blue3">#08C3DA</color>
+    <color name="blue_1">#BFD6F6</color>
+    <color name="blue_2">#8DBDFF</color>
+    <color name="blue_3">#64A1F4</color>
+    <color name="blue_4">#4A91F2</color>
+    <color name="blue_5">#3B7DD8</color>
+    <color name="blueText">#00BFFF</color>
+    <color name="leader_board_bg">#77E6F4</color>
+    <color name="light_blue">#4316C0F9</color>
+    <color name="light_blue_card_color">#4316C0F9</color>
+    <color name="gray2">#BEBEBE</color>
+    <color name="cardView_shadow">#3C3F41</color>
+    <color name="orange">#FCA019</color>
+    <color name="red">#F44336</color>
+    <color name="light_red">#42F44336</color>
+    <color name="statusBarColor">#F7F7F7</color>
 </resources>

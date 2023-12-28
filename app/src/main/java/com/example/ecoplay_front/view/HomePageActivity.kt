@@ -34,6 +34,7 @@ class HomePageActivity : AppCompatActivity() {
                     R.id.tab_home -> startHomeActivity()
                     R.id.tab_bread -> startStoreActivity()
                     R.id.tab_cart -> startProfileActivity()
+
                 }
             }
 
@@ -49,7 +50,9 @@ class HomePageActivity : AppCompatActivity() {
                     R.id.tab_home -> MainActivity()
                     R.id.tab_bread -> startStoreActivity()
                     R.id.tab_cart -> startProfileActivity()
-                }            }
+                    //R.id.tab_quiz->startQuizActivity()
+                }
+            }
         })
 
         styleTextView(findViewById(R.id.title_daily_competitions), "Eco ", "Play")
@@ -72,6 +75,10 @@ class HomePageActivity : AppCompatActivity() {
 
     private fun startStoreActivity() {
         val intent = Intent(this, CarouselMain::class.java)
+        startActivity(intent)
+    }
+    private fun startQuizActivity() {
+        val intent = Intent(this, QuizActivity::class.java)
         startActivity(intent)
     }
 

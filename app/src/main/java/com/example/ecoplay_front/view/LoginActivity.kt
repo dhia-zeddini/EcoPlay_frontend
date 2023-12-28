@@ -53,7 +53,7 @@ class LoginActivity : AppCompatActivity() {
 
         val mSharedPreferences = getSharedPreferences(PREF_FILE, MODE_PRIVATE)
         if (mSharedPreferences.getBoolean(LOGGED,false)) {
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(this, HomePageActivity::class.java))
             finish()
         }
        /* if (mSharedPreferences.getBoolean(LOGGED,false)) {
@@ -83,7 +83,7 @@ class LoginActivity : AppCompatActivity() {
                 putBoolean(LOGGED,true)
 
             }.apply()
-            startActivity(Intent(applicationContext, ProfileActivity::class.java))
+            startActivity(Intent(applicationContext, HomePageActivity::class.java))
             finish()
         })
 

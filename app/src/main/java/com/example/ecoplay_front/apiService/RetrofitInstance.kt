@@ -20,4 +20,7 @@ object RetrofitInstance {
     val cartService: CartService by lazy {
         retrofit.create(CartService::class.java)
     }
+
+    val quizService: QuizService = retrofit.create(QuizService::class.java)
+
 }
