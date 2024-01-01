@@ -294,7 +294,6 @@ class ActivityCommunity : AppCompatActivity(), CommentsAdapter.OnItemClickListen
         NEWEST_FIRST,
         OLDEST_FIRST,
         HIGHEST_RATED,
-        MOST_COMMENTED
     }
 
 

@@ -30,10 +30,12 @@ class HomePageActivity : AppCompatActivity() {
             fun onTabSelected(index: Int, oldTab: AnimatedBottomBar.Tab?, newTab: AnimatedBottomBar.Tab) {
                 when (newTab.id) {
                     R.id.tab_challenges -> startChallengesActivity()
-                    R.id.tab_alarm -> startAstucesActivity()
+                    //R.id.tab_alarm -> startAstucesActivity()
                     R.id.tab_home -> startHomeActivity()
                     R.id.tab_bread -> startStoreActivity()
                     R.id.tab_cart -> startProfileActivity()
+                    R.id.tab_quiz->startQuizActivity()
+
 
                 }
             }
@@ -46,11 +48,11 @@ class HomePageActivity : AppCompatActivity() {
             ) {
                 when (newTab.id) {
                     R.id.tab_challenges -> startChallengesActivity()
-                    R.id.tab_alarm -> startAstucesActivity()
+                    //R.id.tab_alarm -> startAstucesActivity()
                     R.id.tab_home -> MainActivity()
                     R.id.tab_bread -> startStoreActivity()
                     R.id.tab_cart -> startProfileActivity()
-                    //R.id.tab_quiz->startQuizActivity()
+                    R.id.tab_quiz->startQuizActivity()
                 }
             }
         })
@@ -86,6 +88,7 @@ class HomePageActivity : AppCompatActivity() {
         val intent = Intent(this, ProfileActivity::class.java)
         startActivity(intent)
     }
+
 
 
     private fun styleTextView(textView: TextView, partOne: String, partTwo: String) {

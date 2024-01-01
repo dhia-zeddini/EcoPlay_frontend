@@ -38,6 +38,10 @@ class QuizActivity : AppCompatActivity() {
 
         fetchQuizData()
         setupAnswerButtons()
+
+        binding.infoIcon.setOnClickListener {
+            startQuizActivity()
+        }
         Log.d("ResultActivity", "Correct: $correctCount, Incorrect: $incorrectCount")
 
 
@@ -65,6 +69,11 @@ class QuizActivity : AppCompatActivity() {
                 Log.e("jawna mech mrygel", "Error fetching quiz data: ${t.message}", t)
             }
         })
+    }
+
+    private fun startQuizActivity() {
+        val intent = Intent(this, AstuceHomeActivity::class.java)
+        startActivity(intent)
     }
 
     private fun displayQuestion(index: Int) {

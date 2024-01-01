@@ -3,10 +3,11 @@
         android:id="@+id/tab_challenges"
         android:icon="@drawable/baseline_perm_media_24"
         android:title="Challenges" />
+
     <item
-        android:id="@+id/tab_alarm"
+        android:id="@+id/tab_quiz"
         android:icon="@drawable/baseline_quiz_24"
-        android:title="Astuces" />
+        android:title="Quiz" />
 
     <item
         android:id="@+id/tab_home"

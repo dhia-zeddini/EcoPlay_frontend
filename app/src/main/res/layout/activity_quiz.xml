@@ -21,31 +21,43 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp">
 
             <ProgressBar
                 android:id="@+id/pb_progress"
                 style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
                 android:layout_weight="1"
                 android:indeterminate="false"
                 android:minHeight="8dp"
                 android:progressDrawable="@drawable/orange_pb_bg"
-                android:progress="1" />
+                android:progress="50" />
 
             <TextView
                 android:id="@+id/tvProgress"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="10dp"
-                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
                 android:text="5/10"
                 android:textColor="@color/blue"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/infoIcon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/info"
+            />
         </LinearLayout>
+
     </androidx.cardview.widget.CardView>
 
 
