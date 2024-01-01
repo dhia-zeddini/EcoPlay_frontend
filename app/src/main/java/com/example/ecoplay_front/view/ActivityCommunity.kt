@@ -24,6 +24,7 @@ import com.example.ecoplay_front.adapter.CommentsAdapter
 import com.example.ecoplay_front.apiService.ChallengeApi
 import com.example.ecoplay_front.fragments.AddCommentDialogFragment
 import com.example.ecoplay_front.model.Comment
+import com.example.ecoplay_front.uttil.Constants.BASE_URL
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -80,7 +81,7 @@ class ActivityCommunity : AppCompatActivity(), CommentsAdapter.OnItemClickListen
         }
 
         val retrofit = Retrofit.Builder()
-            .baseUrl("http://192.168.1.18:9001/")
+            .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 

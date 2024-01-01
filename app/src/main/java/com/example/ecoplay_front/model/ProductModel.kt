@@ -7,7 +7,7 @@ data class ProductModel(
     val nameP: String,
     val descriptionP: String,
     val image: String,
-    val priceP: Double,
+    val priceP: String,
     val typeP: String,
     val createdAt: String,
     val updatedAt: String,

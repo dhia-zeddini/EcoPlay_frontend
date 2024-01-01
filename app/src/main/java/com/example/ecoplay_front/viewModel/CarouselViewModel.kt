@@ -22,30 +22,19 @@ class CarouselViewModel : ViewModel() {
     val prod = MutableLiveData<ProductModel>()
 
     fun fetchProductsFromBackend() {
-        /*viewModelScope.launch {
-            try {
-                val productList = withContext(Dispatchers.IO) {
-                    RetrofitInstance.carouselleService.getAllProducts()
 
-                }
-                Log.d("background fetch","mrigllll ${productList}")
-                _products.value=productList
-            } catch (e: Exception) {
-                _products.postValue(emptyList())
-                // Optionally log the exception or handle the error state
-                Log.d("background fetch","moch mrigllll ${e.message}")
-            }
-        }*/
             RetrofitInstance.carouselleService.getAllProducts().enqueue(object : Callback<List<ProductModel>> {
                 override fun onResponse(call: Call<List<ProductModel>>, response: Response<List<ProductModel>>) {
                     if (response.isSuccessful) {
                         _products.value = response.body()
-                        Log.d("RetrofitCall", "Produit Response successful: ${response.body()}")
+                       // Log.d("RetrofitCall", "Produit Response successful: ${response.body()}")
 
                     }
+                    //Log.d("RetrofitCall", "Produit Response test: ${response.body()}")
                 }
                     override fun onFailure(call: Call<List<ProductModel>>, t: Throwable) {
                         _products.value = emptyList()
+                        Log.d("RetrofitCall", "Produit Response error")
                     }
                 }
             )
