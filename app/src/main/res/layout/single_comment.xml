@@ -38,6 +38,15 @@
                 android:layout_height="wrap_content"
                 android:padding="8dp"
                 android:text="Subtitle" />
+            <TextView
+                android:id="@+id/text_challenge_timestamp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="Timestamp"
+                android:textSize="12sp"
+                android:textColor="@color/gray" />
+
 
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>

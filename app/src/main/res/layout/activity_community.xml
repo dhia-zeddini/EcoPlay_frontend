@@ -28,6 +28,19 @@
             android:text="Available posts"
             android:textSize="24sp"
             android:textStyle="bold" />
+        <Spinner
+            android:id="@+id/spinner_sorting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:entries="@array/sorting_options" />
+
+
+
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_refresh_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
 
         <androidx.recyclerview.widget.RecyclerView
@@ -39,6 +52,9 @@
             android:padding="16dp"
             android:scrollbars="vertical"
             tools:listitem="@layout/single_comment" />
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
 
 
     </LinearLayout>

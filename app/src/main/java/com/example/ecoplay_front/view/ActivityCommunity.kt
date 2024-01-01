@@ -9,12 +9,16 @@ import android.text.Spanned
 import android.text.style.ForegroundColorSpan
 import android.util.Log
 import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.ProgressBar
+import android.widget.Spinner
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.ecoplay_front.R
 import com.example.ecoplay_front.adapter.CommentsAdapter
 import com.example.ecoplay_front.apiService.ChallengeApi
@@ -46,6 +50,11 @@ class ActivityCommunity : AppCompatActivity(), CommentsAdapter.OnItemClickListen
     private lateinit var progressBar: ProgressBar
     private lateinit var progressBar2: ProgressBar
 
+    private lateinit var swipeRefreshLayout: SwipeRefreshLayout
+    private lateinit var sortingSpinner: Spinner
+
+
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,51 +62,81 @@ class ActivityCommunity : AppCompatActivity(), CommentsAdapter.OnItemClickListen
         setContentView(R.layout.activity_community)
 
         recyclerView = findViewById(R.id.recycler_view_comments)
-        commentsAdapter = CommentsAdapter(mutableListOf(), this) // Pass 'this' as the listener here
         progressBar = findViewById(R.id.progressBar)
-        progressBar2 = findViewById(R.id.progressBar2)
+        progressBar2 = findViewById(R.id.progressBar2) // Make sure this ID exists in your layout
 
+        fabAddComment = findViewById(R.id.fab_add_comment)
+        swipeRefreshLayout = findViewById(R.id.swipe_refresh_layout)
+        sortingSpinner = findViewById(R.id.spinner_sorting)
+
+        commentsAdapter = CommentsAdapter(mutableListOf(), this)
         recyclerView.adapter = commentsAdapter
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        val availablePostsTextView = findViewById<TextView>(R.id.textView_available_posts)
-        styleTextView(availablePostsTextView, "Available ", "posts")
-
-        challengeId?.let { fetchComments(it) }
+        swipeRefreshLayout.setOnRefreshListener {
+            challengeId?.let {
+                fetchComments(it)
+            }
+        }
 
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://ecoplay-api.onrender.com/")
+            .baseUrl("http://192.168.1.18:9001/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
         challengeApi = retrofit.create(ChallengeApi::class.java)
 
-        challengeId = intent.getStringExtra("challengeId")
+        challengeId = intent.getStringExtra("challengeId") ?: return
+        fetchComments(challengeId)
 
-        Log.d("lookforid", "Challenge ID: $challengeId")
-
-        challengeId?.let {
-            fetchComments(it)
+        fabAddComment.setOnClickListener {
+            showAddCommentDialog()
         }
 
+        ArrayAdapter.createFromResource(
+            this,
+            R.array.sorting_options,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            sortingSpinner.adapter = adapter
+        }
 
-
-        fabAddComment = findViewById<FloatingActionButton>(R.id.fab_add_comment).apply {
-            setOnClickListener {
-                showAddCommentDialog()
+        sortingSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                val sortOption = parent.getItemAtPosition(position).toString()
+                sortComments(sortOption)
             }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {}
         }
     }
+
+    private fun sortComments(sortOption: String) {
+        val sortedList = when (sortOption) {
+            getString(R.string.sort_newest_first) -> commentsAdapter.getComments().sortedByDescending { it.createdAt }
+            getString(R.string.sort_oldest_first) -> commentsAdapter.getComments().sortedBy { it.createdAt }
+            getString(R.string.sort_highest_rated) -> commentsAdapter.getComments().sortedByDescending { it.rating }
+            else -> commentsAdapter.getComments()
+        }
+
+        commentsAdapter.setComments(sortedList)
+    }
+
 
     private fun fetchComments(challengeId: String?) {
         progressBar.visibility = View.VISIBLE
         progressBar2.visibility = View.VISIBLE
+        swipeRefreshLayout.isRefreshing = true
+
         val call = challengeApi.getComments(challengeId)
         Log.d("ActivityCommunity", "Fetching comments from URL: ${call.request().url}")
 
         call.enqueue(object : Callback<List<Comment>> {
             override fun onResponse(call: Call<List<Comment>>, response: Response<List<Comment>>) {
                 if (response.isSuccessful) {
+                    swipeRefreshLayout.isRefreshing = false
+
 
 
                     val commentsList = response.body() ?: emptyList()
@@ -113,6 +152,8 @@ class ActivityCommunity : AppCompatActivity(), CommentsAdapter.OnItemClickListen
             }
 
             override fun onFailure(call: Call<List<Comment>>, t: Throwable) {
+                swipeRefreshLayout.isRefreshing = false
+
                 Log.e("ActivityCommunity", "Failure getting comments", t)
 
             }
@@ -246,5 +287,15 @@ class ActivityCommunity : AppCompatActivity(), CommentsAdapter.OnItemClickListen
         }
         startActivity(intent)
     }
+
+
+    enum class SortType {
+        NEWEST_FIRST,
+        OLDEST_FIRST,
+        HIGHEST_RATED,
+        MOST_COMMENTED
+    }
+
+
 
 }

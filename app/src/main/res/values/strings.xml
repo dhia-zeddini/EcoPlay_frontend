@@ -45,6 +45,19 @@
     <string name="questionInfo">Category:\nType:\nDifficulty:</string>
 
 
+    <string-array name="sorting_options">
+        <item>Newest First</item>
+        <item>Oldest First</item>
+        <item>Highest Rated</item>
+        <item>Most Commented</item>
+    </string-array>
+
+    <string name="sort_newest_first">Newest First</string>
+    <string name="sort_oldest_first">Oldest First</string>
+    <string name="sort_highest_rated">Highest Rated</string>
+    <string name="sort_most_commented">Most Commented</string>
+
+
     <string name="quiz_progress">%1$d/%2$d</string>
     <string name="error_loading_question">Error loading question. Please try again.</string>
 
