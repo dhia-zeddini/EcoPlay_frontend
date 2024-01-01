@@ -95,7 +95,7 @@ class ViewCart : AppCompatActivity() {
         ///////: Publishable Key Stripe ///////
         PaymentConfiguration.init(
             applicationContext,
-            "pk_test_51OCiyzA6xn7XOwxetYBolugYgUT1Y2RT5pudqJ4DS7702ZYQ6oroeyQu403hnZaUOBbuSwz5Jt46kZoqn6jtFNVB006LUPWwm3" // Replace with your actual publishable key
+            "pk_test_51O9PQmBry202g6u5k2wrbGr0PskrPsUUVHq9N9w7yvAYhpmodctj2BeGtUJZjPEmdjcH7TL03VOPUJFZOtTxjFeI00hQtTNbmk" // Replace with your actual publishable key
         )
         ///////: Publishable Key Stripe ///////
         makePaymentImageView = findViewById(R.id.imageViewpay) // Replace with your actual ImageView ID
