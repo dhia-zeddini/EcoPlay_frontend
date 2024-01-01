@@ -251,7 +251,7 @@ class ViewCart : AppCompatActivity() {
     ////////////////// STRIPE ////////////////////////
     private fun startStripeCheckout() {
         val service = RetrofitInstance.retrofit.create(CartService::class.java)
-        service.createPaymentIntent(CreatePaymentIntentRequest(totalC = totalAmount.toInt())).enqueue(object : Callback<PaymentIntentResponse> {
+        service.createPaymentIntent(CreatePaymentIntentRequest(totalC = totalAmount)).enqueue(object : Callback<PaymentIntentResponse> {
             override fun onResponse(
                 call: Call<PaymentIntentResponse>,
                 response: Response<PaymentIntentResponse>
