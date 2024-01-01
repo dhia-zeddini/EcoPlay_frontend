@@ -29,7 +29,7 @@
         app:abb_indicatorMargin="16dp"
         app:abb_indicatorHeight="4dp"
         app:abb_tabs="@menu/my_bottom_bar_menu"
-        app:abb_selectedIndex="3"
+        app:abb_selectedIndex="2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />

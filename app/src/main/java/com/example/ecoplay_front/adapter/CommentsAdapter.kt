@@ -38,6 +38,7 @@ class CommentsAdapter(
         holder.itemView.setOnClickListener {
             listener?.onItemClick(comments[position])
         }
+
     }
 
     override fun getItemCount(): Int = comments.size
